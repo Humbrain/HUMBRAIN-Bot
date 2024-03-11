@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Humbrain/HUMBRAIN-Bot/issues"
   },
-  "homepage": "https://github.com/Humbrain/HUMBRAIN-Bot#readme"
+  "homepage": "https://github.com/Humbrain/HUMBRAIN-Bot#readme",
+  "dependencies": {
+    "@nestjs/config": "^3.2.0"
+  }
 }
