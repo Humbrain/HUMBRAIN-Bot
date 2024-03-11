@@ -1,0 +1,19 @@
+{
+  "name": "humbot",
+  "version": "0.0.1",
+  "description": "Création d'un bot discord pour les serveurs communautaire",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Humbrain/HUMBRAIN-Bot.git"
+  },
+  "author": "Steodec <paul.tedesco@humbrain.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Humbrain/HUMBRAIN-Bot/issues"
+  },
+  "homepage": "https://github.com/Humbrain/HUMBRAIN-Bot#readme"
+}
