@@ -1,5 +1,5 @@
 import {Command} from "../command";
-import {SlashCommandBuilder} from "discord.js";
+import {PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import {Guild} from "../../entities/guild";
@@ -11,6 +11,7 @@ export const Ban: Command = {
         .setNameLocalizations(lang.moderation.ban)
         .setDescription(lang.moderation.ban_description['en-US'])
         .setDescriptionLocalizations(lang.moderation.ban_description)
+        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .addUserOption(option => option
             .setName(lang.user['en-US'])
             .setNameLocalizations(lang.user)
