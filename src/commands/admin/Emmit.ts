@@ -1,4 +1,4 @@
-import {Command} from './command';
+import {Command} from '../command';
 import {Client, CommandInteraction, SlashCommandBuilder, ToAPIApplicationCommandOptions} from 'discord.js';
 
 export const Emmit: Command = {
