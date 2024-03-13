@@ -2,13 +2,23 @@ import {Command} from "../command";
 import {Colors, EmbedBuilder, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
+import lang from "../../lang";
 
 export const Sanctions: Command = {
-    data: new SlashCommandBuilder().setName('sanctions').setDescription('Get list of sanctions')
-        .addUserOption(option => option.setName('user').setDescription('The user to show list').setRequired(true)),
+    data: new SlashCommandBuilder()
+        .setName(lang.moderation.sanction['en-US'])
+        .setNameLocalizations(lang.moderation.sanction)
+        .setDescription(lang.moderation.sanction_description['en-US'])
+        .setDescriptionLocalizations(lang.moderation.sanction_description)
+        .addUserOption(option => option
+            .setName(lang.moderation.user['en-US'])
+            .setNameLocalizations(lang.moderation.user)
+            .setDescription(lang.moderation.user_description['en-US'])
+            .setDescriptionLocalizations(lang.moderation.user_description)
+            .setRequired(true)),
     run: async (client, interaction) => {
         // @ts-ignore
-        const user = interaction.options.getUser('user');
+        const user = interaction.options.getUser(lang.moderation.user['en-US']);
         if (!user) {
             await interaction.reply({content: 'An error has occurred', ephemeral: true});
             return;
