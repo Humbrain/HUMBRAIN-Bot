@@ -12,14 +12,14 @@ export const UnMute: Command = {
         .setDescription(lang.moderation.unmute_description["en-US"])
         .setDescriptionLocalizations(lang.moderation.unmute_description)
         .addUserOption(option => option
-            .setName(lang.moderation.user["en-US"])
-            .setNameLocalizations(lang.moderation.user)
-            .setDescription(lang.moderation.user_description["en-US"])
-            .setDescriptionLocalizations(lang.moderation.user_description)
+            .setName(lang.user["en-US"])
+            .setNameLocalizations(lang.user)
+            .setDescription(lang.user_description["en-US"])
+            .setDescriptionLocalizations(lang.user_description)
             .setRequired(true)),
     run: async (client, interaction) => {
         // @ts-ignore
-        const user: GuildMember = interaction.options.getMember(lang.moderation.user['en-US']);
+        const user: GuildMember = interaction.options.getMember(lang.user['en-US']);
         if (!user) {
             await interaction.reply({content: 'An error has occurred', ephemeral: true});
             return;
