@@ -162,5 +162,54 @@ export default {
             "nl": "krijg lijst van sancties voor een gebruiker",
             "fr": "obtenir la liste des sanctions pour un utilisateur"
         },
+        "clear":
+        {
+            "en-US": "clear",
+            "fr": "supprimer",
+            "de": "löschen",
+            "ru": "очистить",
+            "pt-BR": "limpar",
+            "nl": "wissen"
+        },
+        "clear_description": {
+            "en-US": "Clears a number of messages or a channel",
+            "fr": "Efface un nombre de messages ou un canal",
+            "de": "Löscht eine Anzahl von Nachrichten oder einen Kanal",
+            "ru": "Очищает количество сообщений или канал",
+            "pt-BR": "Limpa um número de mensagens ou um canal",
+            "nl": "Wist een aantal berichten of een kanaal"
+        },
+    },
+    "amount": {
+        "en-US": "amount",
+        "fr": "montant",
+        "de": "betrag",
+        "ru": "количество",
+        "pt-BR": "quantidade",
+        "nl": "hoeveelheid"
+    },
+    "amount_description": {
+        "en-US": "Amount for the command",
+        "fr": "Montant pour la commande",
+        "de": "Betrag für den Befehl",
+        "ru": "Количество для команды",
+        "pt-BR": "Quantidade para o comando",
+        "nl": "Hoeveelheid voor de opdracht"
+    },
+    "all": {
+        "en-US": "all",
+        "fr": "tout",
+        "de": "alle",
+        "ru": "все",
+        "pt-BR": "todos",
+        "nl": "allemaal"
+    },
+    "all_description": {
+        "en-US": "All for the command",
+        "fr": "Tout pour la commande",
+        "de": "Alle für den Befehl",
+        "ru": "Все для команды",
+        "pt-BR": "Todos para o comando",
+        "nl": "Alles voor de opdracht"
     }
 } as const;
