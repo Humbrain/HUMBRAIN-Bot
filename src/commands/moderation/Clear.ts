@@ -1,4 +1,4 @@
-import {GuildChannel, SlashCommandBuilder} from "discord.js";
+import {GuildChannel, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import lang from "../../lang";
 import {Command} from "../command";
 
@@ -8,6 +8,7 @@ export const Clear: Command = {
         .setNameLocalizations(lang.moderation.clear)
         .setDescription(lang.moderation.clear['en-US'])
         .setDescriptionLocalizations(lang.moderation.clear)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
         .addIntegerOption(option => option
             .setName(lang.amount['en-US'])
             .setNameLocalizations(lang.amount)

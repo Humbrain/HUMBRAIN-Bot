@@ -1,5 +1,5 @@
 import {Command} from "../command";
-import {Colors, EmbedBuilder, SlashCommandBuilder} from "discord.js";
+import {Colors, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import lang from "../../lang";
@@ -10,6 +10,7 @@ export const Sanctions: Command = {
         .setNameLocalizations(lang.moderation.sanction)
         .setDescription(lang.moderation.sanction_description['en-US'])
         .setDescriptionLocalizations(lang.moderation.sanction_description)
+        .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers)
         .addUserOption(option => option
             .setName(lang.user['en-US'])
             .setNameLocalizations(lang.user)

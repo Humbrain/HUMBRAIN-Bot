@@ -1,5 +1,5 @@
 import {Command} from "../command";
-import {GuildMember, SlashCommandBuilder} from "discord.js";
+import {GuildMember, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import {Guild} from "../../entities/guild";
@@ -13,6 +13,7 @@ export const Mute: Command = {
         .setNameLocalizations(lang.moderation.mute)
         .setDescription(lang.moderation.mute_description["en-US"])
         .setDescriptionLocalizations(lang.moderation.mute_description)
+        .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers)
         .addUserOption(option => option
             .setName(lang.user["en-US"])
             .setNameLocalizations(lang.user)
