@@ -11,14 +11,14 @@ export const Sanctions: Command = {
         .setDescription(lang.moderation.sanction_description['en-US'])
         .setDescriptionLocalizations(lang.moderation.sanction_description)
         .addUserOption(option => option
-            .setName(lang.moderation.user['en-US'])
-            .setNameLocalizations(lang.moderation.user)
-            .setDescription(lang.moderation.user_description['en-US'])
-            .setDescriptionLocalizations(lang.moderation.user_description)
+            .setName(lang.user['en-US'])
+            .setNameLocalizations(lang.user)
+            .setDescription(lang.user_description['en-US'])
+            .setDescriptionLocalizations(lang.user_description)
             .setRequired(true)),
     run: async (client, interaction) => {
         // @ts-ignore
-        const user = interaction.options.getUser(lang.moderation.user['en-US']);
+        const user = interaction.options.getUser(lang.user['en-US']);
         if (!user) {
             await interaction.reply({content: 'An error has occurred', ephemeral: true});
             return;

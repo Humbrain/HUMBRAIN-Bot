@@ -11,20 +11,20 @@ export const Warn: Command = {
         .setNameLocalizations(lang.moderation.warn)
         .setDescription(lang.moderation.warn_description["en-US"])
         .setDescriptionLocalizations(lang.moderation.warn_description)
-        .addUserOption(option => option.setName(lang.moderation.user["en-US"])
-            .setNameLocalizations(lang.moderation.user)
-            .setDescription(lang.moderation.user_description["en-US"])
-            .setDescriptionLocalizations(lang.moderation.user_description)
+        .addUserOption(option => option.setName(lang.user["en-US"])
+            .setNameLocalizations(lang.user)
+            .setDescription(lang.user_description["en-US"])
+            .setDescriptionLocalizations(lang.user_description)
             .setRequired(true))
-        .addStringOption(option => option.setName(lang.moderation.reason["en-US"])
-            .setNameLocalizations(lang.moderation.reason)
-            .setDescription(lang.moderation.reason_description["en-US"])
-            .setDescriptionLocalizations(lang.moderation.reason_description)),
+        .addStringOption(option => option.setName(lang.reason["en-US"])
+            .setNameLocalizations(lang.reason)
+            .setDescription(lang.reason_description["en-US"])
+            .setDescriptionLocalizations(lang.reason_description)),
     run: async (client, interaction) => {
         // @ts-ignore
-        const user = interaction.options.getUser(lang.moderation.user['en-US']);
+        const user = interaction.options.getUser(lang.user['en-US']);
         // @ts-ignore
-        const reason = interaction.options.getString(lang.moderation.reason['en-US']);
+        const reason = interaction.options.getString(lang.reason['en-US']);
         if (!user) {
             await interaction.reply({content: 'An error has occurred', ephemeral: true});
             return;

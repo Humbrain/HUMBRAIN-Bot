@@ -14,28 +14,28 @@ export const Mute: Command = {
         .setDescription(lang.moderation.mute_description["en-US"])
         .setDescriptionLocalizations(lang.moderation.mute_description)
         .addUserOption(option => option
-            .setName(lang.moderation.user["en-US"])
-            .setNameLocalizations(lang.moderation.user)
-            .setDescription(lang.moderation.user_description["en-US"])
-            .setDescriptionLocalizations(lang.moderation.user_description)
+            .setName(lang.user["en-US"])
+            .setNameLocalizations(lang.user)
+            .setDescription(lang.user_description["en-US"])
+            .setDescriptionLocalizations(lang.user_description)
             .setRequired(true))
         .addStringOption(option => option
-            .setName(lang.moderation.duration['en-US'])
-            .setNameLocalizations(lang.moderation.duration)
-            .setDescription(lang.moderation.duration_description['en-US'])
-            .setDescriptionLocalizations(lang.moderation.duration_description).setRequired(true))
+            .setName(lang.duration['en-US'])
+            .setNameLocalizations(lang.duration)
+            .setDescription(lang.duration_description['en-US'])
+            .setDescriptionLocalizations(lang.duration_description).setRequired(true))
         .addStringOption(option => option
-            .setName(lang.moderation.reason["en-US"])
-            .setNameLocalizations(lang.moderation.reason)
-            .setDescription(lang.moderation.reason_description["en-US"])
-            .setDescriptionLocalizations(lang.moderation.reason_description)),
+            .setName(lang.reason["en-US"])
+            .setNameLocalizations(lang.reason)
+            .setDescription(lang.reason_description["en-US"])
+            .setDescriptionLocalizations(lang.reason_description)),
     run: async (client, interaction) => {
         // @ts-ignore
-        const member: GuildMember = interaction.options.getMember(lang.moderation.user['en-US']);
+        const member: GuildMember = interaction.options.getMember(lang.user['en-US']);
         // @ts-ignore
-        const reason = interaction.options.getString(lang.moderation.reason['en-US']) || 'No reason provided';
+        const reason = interaction.options.getString(lang.reason['en-US']) || 'No reason provided';
         // @ts-ignore
-        const duration = interaction.options.getString(lang.moderation.duration['en-US']);
+        const duration = interaction.options.getString(lang.duration['en-US']);
         if (!member) {
             await interaction.reply({content: 'An error has occurred', ephemeral: true});
             return;
