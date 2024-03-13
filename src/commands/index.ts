@@ -1,4 +1,6 @@
 import { Command } from "./command";
-import { Hello } from "./Hello";
+import { Emmit } from './Emmit';
+import {Warn} from "./moderation/Warn";
+import {Sanctions} from "./moderation/Sanction";
 
-export const Commands: Command[] = [Hello];
+export const Commands: Command[] = [Emmit, Warn, Sanctions];
