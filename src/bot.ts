@@ -1,13 +1,20 @@
 import {AppDataSource} from './data-source';
-import {Client, GatewayIntentBits, Partials} from "discord.js";
+import {GatewayIntentBits, Partials} from "discord.js";
 import {handleEvents} from "./listeners/event";
+import Loggers from "./utils/Loggers";
+import CustomClient from "./utils/CustomClient";
+import handlerCommands from "./handlers/commandsHandler";
+import registerCommands from "./utils/RegisterCommands";
+import handlerButton from "./handlers/buttonsHandler";
+import handlerModals from "./handlers/modalsHandler";
+import handlerContextMenu from "./handlers/contextMenusHandler";
 
 AppDataSource.initialize().then(async () => {
-}).catch(error => console.log(error));
+}).catch(error => Loggers.error(error));
 
-console.log("Bot is starting...");
+Loggers.info("Bot is starting...");
 
-const client = new Client({
+const client = new CustomClient({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers,
@@ -24,7 +31,8 @@ const client = new Client({
         GatewayIntentBits.DirectMessageReactions,
         GatewayIntentBits.DirectMessageTyping,
         GatewayIntentBits.GuildScheduledEvents,
-        GatewayIntentBits.MessageContent
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildPresences,
     ],
     partials: [
         Partials.Channel,
@@ -36,6 +44,11 @@ const client = new Client({
     ],
 });
 
+handlerCommands(client)
+handlerButton(client)
+handlerModals(client)
+handlerContextMenu(client)
+registerCommands(client)
 handleEvents(client);
 
 client.login(process.env.DISCORD_TOKEN);

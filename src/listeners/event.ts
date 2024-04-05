@@ -7,7 +7,7 @@ export interface Event {
     run: (client: any, ...args: any[]) => void;
 }
 
-export const handleEvents = async (client: Client): Promise<void> => {
+export const handleEvents = (client: Client): void => {
     const events = Events
     for (const event of events) {
         if (event.once) {

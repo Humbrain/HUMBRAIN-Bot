@@ -1,14 +1,15 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import {Column, Entity, ManyToMany, PrimaryColumn} from 'typeorm';
+import {LevelsUsers} from "./LevelsUsers";
 
 @Entity()
 export class Guild {
-  @PrimaryColumn()
-  id: string;
+    @PrimaryColumn()
+    id: string;
 
-  @Column()
-  name: string;
+    @Column()
+    name: string;
 
-  @Column()
-  icon: string;
+    @Column()
+    icon: string;
 
 }
