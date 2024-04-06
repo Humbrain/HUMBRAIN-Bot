@@ -3,5 +3,5 @@ import CustomClient from "../utils/CustomClient";
 
 export interface ContextMenu {
   data: any;
-  run: (client: CustomClients, interaction: ContextMenuCommandInteraction) => void;
+  run: (client: CustomClient, interaction: ContextMenuCommandInteraction) => void;
 }

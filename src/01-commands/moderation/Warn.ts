@@ -4,6 +4,8 @@ import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import {Guild} from "../../entities/guild";
 import lang from "../../lang/lang";
+import {Error} from "../../utils/Embed";
+import Loggers from "../../utils/Loggers";
 
 export const Warn: Command = {
     data: new SlashCommandBuilder()
@@ -39,6 +41,13 @@ export const Warn: Command = {
         logs.sanction = Sanction.WARN;
 
         await logsRepo.save(logs);
-        await interaction.reply({content: `Warned ${user.tag} for ${reason}`});
+        const error = Error(`L'utilisateur ${user.username} a été warn pour la raison suivante: ${reason}`);
+        await interaction.reply({embeds: [error]});
+        try {
+            const member = await interaction.guild.members.fetch(user.id);
+            await member.send({embeds: [error]});
+        } catch (e) {
+            Loggers.error(e.message)
+        }
     }
 }
