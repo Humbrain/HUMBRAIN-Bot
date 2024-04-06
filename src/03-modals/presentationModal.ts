@@ -41,7 +41,6 @@ export const PresentationModal: Modal = {
         const row = new ActionRowBuilder().addComponents(presentationBtn.data);
         // @ts-ignore
         const msg = await channel.send({embeds: [embed], components: [row]});
-        Loggers.debug(presentation)
         if (presentation) {
             // @ts-ignore
             const oldMsg = await channel.messages.fetch(presentation.presentationMsgId);
