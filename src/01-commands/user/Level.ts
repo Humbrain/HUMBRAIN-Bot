@@ -7,6 +7,7 @@ import {LevelsUsers} from "../../entities/LevelsUsers";
 import * as canvafy from "canvafy";
 import Leveling from "../../utils/Leveling";
 import * as console from "console";
+import {Error} from "../../utils/Embed";
 
 export const Level: Command = {
     data: new SlashCommandBuilder()
@@ -28,13 +29,24 @@ export const Level: Command = {
         let user = interaction.options.getMember(lang.user['en-US']);
         const member: GuildMember = user || interaction.member;
         const guild = await guildRepo.findOneBy({id: interaction.guildId});
-        if (!guild) return;
+        if (!guild) {
+            const error = Error("La guild n'as pas été trouvé");
+            return await interaction.reply({embeds: [error], ephemeral: true});
+        }
 
-        const userLevel = await LevelRepo.findOneBy({
+        let userLevel = await LevelRepo.findOneBy({
             userId: member.id,
             guildId: guild.id
         });
-        if (!userLevel) return;
+
+        if (!userLevel) {
+            const user = new LevelsUsers();
+            user.userId = member.id;
+            user.guildId = guild.id;
+            user.level = 0;
+            user.xp = 0;
+            userLevel = await LevelRepo.save(user);
+        }
 
         const rank = await new canvafy.Rank()
             .setAvatar(member.user.displayAvatarURL({forceStatic: true, extension: "png"}))
