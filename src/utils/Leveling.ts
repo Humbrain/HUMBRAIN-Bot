@@ -125,7 +125,7 @@ export default class Leveling {
         const levelUser = await this._LevelUserRepo.findOneBy({userId: this._userId, guildId: this._guildId});
         const levelRank = levelRanks.find(rank => rank.level <= levelUser.level);
         let channel = this._message.guild.channels.cache.get(this._message.channelId);
-        if (levelInfo.channelId != null) channel = this._message.guild.channels.cache.get(levelInfo.channelId);
+        if (levelInfo?.channelId != null) channel = this._message.guild.channels.cache.get(levelInfo.channelId);
         if (levelRank == null) return;
         const member = this._message.guild.members.cache.get(this._userId);
         const role = this._message.guild.roles.cache.get(levelRank.roleId);

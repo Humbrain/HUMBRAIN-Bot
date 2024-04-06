@@ -19,7 +19,7 @@ export default class CustomModal {
         return this;
     }
 
-    addComponent(customId: string, label: string, style: number, value?: string, placeholder?: string) {
+    addComponent(customId: string, label: string, style: number, value?: string, placeholder?: string, isRequired = true) {
         const input = new TextInputBuilder()
             .setCustomId(customId)
             .setLabel(label)
@@ -29,6 +29,9 @@ export default class CustomModal {
         }
         if (value) {
             input.setValue(value);
+        }
+        if (!isRequired) {
+            input.setRequired(false);
         }
         const action = new ActionRowBuilder().addComponents(input);
         // @ts-ignore

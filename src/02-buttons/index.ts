@@ -5,6 +5,10 @@ import {YesMpBtn} from "./YesMpBtn";
 import {NoMpBtn} from "./NoMpBtn";
 import {TicketsBtn} from "./Tickets";
 import {CloseTicketsBtn} from "./CloseTicketsBtn";
+import {YesPartenariatBtn} from "./YesPartenariatBtn";
+import {NoPartenariatBtn} from "./NoPartenariatBtn";
+import {PartenariaBtn} from "./PartenariaBtn";
+
 
 export const buttons: Button[] = [
     PresentationBtn,
@@ -12,5 +16,8 @@ export const buttons: Button[] = [
     YesMpBtn,
     NoMpBtn,
     TicketsBtn,
-    CloseTicketsBtn
+    CloseTicketsBtn,
+    YesPartenariatBtn,
+    NoPartenariatBtn,
+    PartenariaBtn
 ];

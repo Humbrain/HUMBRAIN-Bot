@@ -77,7 +77,7 @@ export const TicketsBtn: Button = {
         const embed = Success(`Votre ticket a été créé avec succès. <#${ticketChannel.id}>`)
         await interaction.reply({embeds: [embed], ephemeral: true})
         // @ts-ignore
-        const msg = await ticketChannel.send({content: `<@${interaction.user.id}>, voici votre ticket., <@${guildConfig.ticketRoleId}>`});
+        const msg = await ticketChannel.send({content: `<@${interaction.user.id}>, voici votre ticket., <@&${guildConfig.ticketRoleId}>`});
         setTimeout(() => {
             msg.delete()
         }, 5000);

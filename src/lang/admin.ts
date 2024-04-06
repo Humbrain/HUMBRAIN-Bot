@@ -317,6 +317,134 @@ const admin = {
         "ru": "Канал для отправки транскрипта билета",
         "pt-BR": "O canal para enviar a transcrição do ticket",
         "nl": "Het kanaal om het tickettranscript te verzenden"
-    }
+    },
+    "partenaria_settings": {
+        "en-US": "partenariatsettings",
+        "de": "partenariatseinstellungen",
+        "ru": "настройки_партнерства",
+        "pt-BR": "configuraçõesdepartenariado",
+        "nl": "partenariaatinstellingen",
+        "fr": "paramètresdepartenariat"
+    },
+    "partenaria_settings_description": {
+        "en-US": "Set the partenariat message",
+        "de": "Setze die Partenariatnachricht",
+        "ru": "Установить сообщение партнерства",
+        "pt-BR": "Defina a mensagem de parceria",
+        "nl": "Stel het partenariatbericht in",
+        "fr": "Définir le message de partenariat"
+    },
+    "partenaria_channel": {
+        "en-US": "partenariatchannel",
+        "de": "partenariatskanal",
+        "ru": "канал_партнерства",
+        "pt-BR": "canaldepartenariado",
+        "nl": "partenariatkanaal",
+        "fr": "canaldepartenariat"
+    },
+    "partenaria_channel_description": {
+        "en-US": "The channel to send the partenariat message",
+        "de": "Der Kanal, in dem die Partenariatnachricht gesendet wird",
+        "ru": "Канал для отправки сообщения партнерства",
+        "pt-BR": "O canal para enviar a mensagem de parceria",
+        "nl": "Het kanaal om het partenariatbericht te verzenden",
+        "fr": "Le canal pour envoyer le message de partenariat"
+    },
+    "partenaria_channel_ask": {
+        "en-US": "partenariatchannelask",
+        "de": "partenariatskanalfragen",
+        "ru": "запрос_канала_партнерства",
+        "pt-BR": "pedircanaldepartenariado",
+        "nl": "partenariatak",
+        "fr": "demanderlecanaldepartenariat"
+    },
+    "partenaria_channel_ask_description": {
+        "en-US": "The channel to ask for partenariat",
+        "de": "Der Kanal, um nach Partenariat zu fragen",
+        "ru": "Канал для запроса партнерства",
+        "pt-BR": "O canal para pedir parceria",
+        "nl": "Het kanaal om te vragen om partenariat",
+        "fr": "Le canal pour demander un partenariat"
+    },
+    "partenaria_role": {
+        "en-US": "partenariatrole",
+        "de": "parteniatrolle",
+        "ru": "роль_партнерства",
+        "pt-BR": "roldepartenariado",
+        "nl": "partenariatrol",
+        "fr": "rôledupartenariat"
+    },
+    "partenaria_role_description": {
+        "fr": "Le rôle pour traiter les partenariats",
+        "en-US": "The role to handle the partenariats",
+        "de": "Die Rolle, um die Partenariats zu bearbeiten",
+        "ru": "Роль для обработки партнерств",
+        "pt-BR": "O papel para lidar com os partenariados",
+        "nl": "De rol om de partenariaten te behandelen"
+    },
+    "partenaria_mention": {
+        "en-US": "partenariatmention",
+        "de": "partenariatmention",
+        "ru": "partenariatmention",
+        "pt-BR": "partenariatmention",
+        "nl": "partenariatmention",
+        "fr": "partenariatmention"
+    },
+    "partenaria_mention_description": {
+        "en-US": "The mention of the partenariat",
+        "de": "Die Erwähnung des Partenariats",
+        "ru": "Упоминание партнерства",
+        "pt-BR": "A menção do partenariado",
+        "nl": "De vermelding van het partenariaat",
+        "fr": "La mention du partenariat"
+    },
+    "private_room_settings": {
+        "en-US": "privateroomsettings",
+        "de": "privateraumeinstellungen",
+        "ru": "настройки_частной_комнаты",
+        "pt-BR": "configuraçõesdesala",
+        "nl": "privékamerinstellingen",
+        "fr": "paramètresdesalleprivée"
+    },
+    "private_room_settings_description": {
+        "en-US": "Set the private room message",
+        "de": "Setze die Privatraumnachricht",
+        "ru": "Установить сообщение частной комнаты",
+        "pt-BR": "Defina a mensagem da sala privada",
+        "nl": "Stel het privékamerbericht in",
+        "fr": "Définir le message de la salle privée"
+    },
+    "private_room_category": {
+        "en-US": "privateroomcategory",
+        "de": "privateraumkategorie",
+        "ru": "категория_частной_комнаты",
+        "pt-BR": "categoriadesalaprivada",
+        "nl": "privékamercategorie",
+        "fr": "catégoriedelasalleprivée"
+    },
+    "private_room_category_description": {
+        "en-US": "The category to create the private room",
+        "de": "Die Kategorie, um den Privatraum zu erstellen",
+        "ru": "Категория для создания частной комнаты",
+        "pt-BR": "A categoria para criar a sala privada",
+        "nl": "De categorie om de privékamer te maken",
+        "fr": "La catégorie pour créer la salle privée"
+    },
+    "private_room_voice": {
+        "en-US": "privateroomvoice",
+        "de": "privateraumvoice",
+        "ru": "голос_частной_комнаты",
+        "pt-BR": "vozdasalaprivada",
+        "nl": "privékamervoice",
+        "fr": "voixdelasalleprivée"
+    },
+    "private_room_voice_description": {
+        "en-US": "The voice channel to create the private room",
+        "de": "Der Sprachkanal, um den Privatraum zu erstellen",
+        "ru": "Голосовой канал для создания частной комнаты",
+        "pt-BR": "O canal de voz para criar a sala privada",
+        "nl": "Het spraakkanaal om de privékamer te maken",
+        "fr": "Le canal vocal pour créer la salle privée"
+    },
 }
 export default admin;

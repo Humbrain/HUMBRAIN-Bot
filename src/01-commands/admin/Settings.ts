@@ -11,6 +11,7 @@ import {Command} from "../command";
 import {Error, Success} from "../../utils/Embed";
 import {PresentationBtn} from "../../02-buttons/presentationBtn";
 import {TicketsBtn} from "../../02-buttons/Tickets";
+import {PartenariaBtn} from "../../02-buttons/PartenariaBtn";
 
 export const Settings: Command = {
     data: new SlashCommandBuilder()
@@ -110,8 +111,57 @@ export const Settings: Command = {
                 .setNameLocalizations(lang.admin.ticket_message)
                 .setDescription(lang.admin.ticket_message_description["en-US"])
                 .setDescriptionLocalizations(lang.admin.ticket_message_description)
+                .setRequired(true)))
+        .addSubcommand(subcommand => subcommand
+            .setName(lang.admin.partenaria_settings["en-US"])
+            .setNameLocalizations(lang.admin.partenaria_settings)
+            .setDescription(lang.admin.partenaria_settings_description["en-US"])
+            .setDescriptionLocalizations(lang.admin.partenaria_settings_description)
+            .addChannelOption(option => option
+                .setName(lang.admin.partenaria_channel["en-US"])
+                .setNameLocalizations(lang.admin.partenaria_channel)
+                .setDescription(lang.admin.partenaria_channel_description["en-US"])
+                .setDescriptionLocalizations(lang.admin.partenaria_channel_description)
+                .addChannelTypes(ChannelType.GuildText)
                 .setRequired(true))
-        )
+            .addRoleOption(option => option
+                .setName(lang.admin.partenaria_role["en-US"])
+                .setNameLocalizations(lang.admin.partenaria_role)
+                .setDescription(lang.admin.partenaria_role_description["en-US"])
+                .setDescriptionLocalizations(lang.admin.partenaria_role_description)
+                .setRequired(true))
+            .addChannelOption(option => option
+                .setName(lang.admin.partenaria_channel_ask["en-US"])
+                .setNameLocalizations(lang.admin.partenaria_channel_ask)
+                .setDescription(lang.admin.partenaria_channel_ask_description["en-US"])
+                .setDescriptionLocalizations(lang.admin.partenaria_channel_ask_description)
+                .addChannelTypes(ChannelType.GuildText)
+                .setRequired(true))
+            .addRoleOption(option => option
+                .setName(lang.admin.partenaria_mention["en-US"])
+                .setNameLocalizations(lang.admin.partenaria_mention)
+                .setDescription(lang.admin.partenaria_mention_description["en-US"])
+                .setDescriptionLocalizations(lang.admin.partenaria_mention_description)
+                .setRequired(true)))
+        .addSubcommand(subcommand => subcommand
+            .setName(lang.admin.private_room_settings["en-US"])
+            .setNameLocalizations(lang.admin.private_room_settings)
+            .setDescription(lang.admin.private_room_settings_description["en-US"])
+            .setDescriptionLocalizations(lang.admin.private_room_settings_description)
+            .addChannelOption(option => option
+                .setName(lang.admin.private_room_category["en-US"])
+                .setNameLocalizations(lang.admin.private_room_category)
+                .setDescription(lang.admin.private_room_category_description["en-US"])
+                .setDescriptionLocalizations(lang.admin.private_room_category_description)
+                .addChannelTypes(ChannelType.GuildCategory)
+                .setRequired(true))
+            .addChannelOption(option => option
+                .setName(lang.admin.private_room_voice["en-US"])
+                .setNameLocalizations(lang.admin.private_room_voice)
+                .setDescription(lang.admin.private_room_voice_description["en-US"])
+                .setDescriptionLocalizations(lang.admin.private_room_voice_description)
+                .addChannelTypes(ChannelType.GuildVoice)
+                .setRequired(true)))
     ,
     run: async (client, interaction) => {
         //@ts-ignore
@@ -125,6 +175,10 @@ export const Settings: Command = {
                 return await welcomeSettings(interaction);
             case lang.admin.ticket_settings["en-US"]:
                 return await ticketSettings(interaction);
+            case lang.admin.partenaria_settings["en-US"]:
+                return await partenariaSettings(interaction);
+            case lang.admin.private_room_settings["en-US"]:
+                return await privateRoomSettings(interaction);
         }
     }
 }
@@ -171,22 +225,21 @@ const mpSetting = async (interaction) => {
     const configRepo = AppDataSource.getRepository(Config);
     const config = await configRepo.findOne({where: {guildId: interaction.guildId}});
     if (!config) {
-        await configRepo.insert({
+        await configRepo.save({
             guildId: interaction.guildId,
             mpChannelId: mpChannel.id,
             mpSystemAge: ageSystem,
-            majorRoleId: adultRole.id,
-            minorRoleId: minorRole.id,
-            closeRoleId: closeRole.id
+            majorRoleId: adultRole?.id || null,
+            minorRoleId: minorRole?.id || null,
+            closeRoleId: closeRole?.id || null
         });
     } else {
-        await configRepo.update({guildId: interaction.guildId}, {
-            mpChannelId: mpChannel.id,
-            mpSystemAge: ageSystem,
-            majorRoleId: adultRole.id,
-            minorRoleId: minorRole.id,
-            closeRoleId: closeRole.id
-        });
+        config.mpSystemAge = ageSystem || false;
+        config.mpChannelId = mpChannel.id;
+        config.majorRoleId = adultRole?.id || null;
+        config.minorRoleId = minorRole?.id || null;
+        config.closeRoleId = closeRole?.id || null;
+        await configRepo.save(config);
     }
     const embed = Success("Les paramètres de présentation ont été mis à jour");
     await interaction.reply({embeds: [embed], ephemeral: true});
@@ -246,5 +299,59 @@ const ticketSettings = async (interaction) => {
         .setColor(Colors.Blue);
     await ticketChannel.send({components: [ticketBtn], embeds: [embedTick]});
     const embed = Success("Les paramètres de ticket ont été mis à jour");
+    await interaction.reply({embeds: [embed], ephemeral: true});
+}
+
+const partenariaSettings = async (interaction) => {
+    const partenariaChannel = interaction.options.getChannel(lang.admin.partenaria_channel["en-US"]);
+    const partenariaRole = interaction.options.getRole(lang.admin.partenaria_role["en-US"]);
+    const partenariaChannelAsk = interaction.options.getChannel(lang.admin.partenaria_channel_ask["en-US"]);
+    const partenariaMention = interaction.options.getRole(lang.admin.partenaria_mention["en-US"]);
+
+    const configRepo = AppDataSource.getRepository(Config);
+    const config = await configRepo.findOne({where: {guildId: interaction.guildId}});
+    if (!config) {
+        await configRepo.insert({
+            guildId: interaction.guildId,
+            partenaireChannelId: partenariaChannel.id,
+            partenaireRoleId: partenariaRole.id,
+            partenariaChannelAskId: partenariaChannelAsk.id,
+            partenaireMentionId: partenariaMention.id
+        });
+    } else {
+        await configRepo.update(config.id, {
+            partenaireChannelId: partenariaChannel.id,
+            partenaireRoleId: partenariaRole.id,
+            partenariaChannelAskId: partenariaChannelAsk.id,
+            partenaireMentionId: partenariaMention.id
+        });
+    }
+
+    const btn = new ActionRowBuilder().addComponents(PartenariaBtn.data);
+    await interaction.guild.channels.cache.get(partenariaChannel.id).send({components: [btn]});
+
+    const embed = Success("Les paramètres de partenaria ont été mis à jour");
+    await interaction.reply({embeds: [embed], ephemeral: true});
+}
+
+const privateRoomSettings = async (interaction) => {
+    const privateRoomCategory = interaction.options.getChannel(lang.admin.private_room_category["en-US"]);
+    const privateRoomVoice = interaction.options.getChannel(lang.admin.private_room_voice["en-US"]);
+
+    const configRepo = AppDataSource.getRepository(Config);
+    const config = await configRepo.findOne({where: {guildId: interaction.guildId}});
+    if (!config) {
+        await configRepo.insert({
+            guildId: interaction.guildId,
+            privateRoomCategoryId: privateRoomCategory.id,
+            privateRoomVoiceId: privateRoomVoice.id
+        });
+    } else {
+        await configRepo.update(config.id, {
+            privateRoomCategoryId: privateRoomCategory.id,
+            privateRoomVoiceId: privateRoomVoice.id
+        });
+    }
+    const embed = Success("Les paramètres de salon privé ont été mis à jour");
     await interaction.reply({embeds: [embed], ephemeral: true});
 }

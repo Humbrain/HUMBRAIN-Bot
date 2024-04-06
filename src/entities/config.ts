@@ -46,4 +46,22 @@ export class Config {
 
     @Column({nullable: true})
     ticketTranscriptChannelId: string;
+
+    @Column({nullable: true})
+    partenaireChannelId: string;
+
+    @Column({nullable: true})
+    partenariaChannelAskId: string;
+
+    @Column({nullable: true})
+    partenaireRoleId: string;
+
+    @Column({nullable: true})
+    partenaireMentionId: string;
+
+    @Column({nullable: true})
+    privateRoomCategoryId: string;
+
+    @Column({nullable: true})
+    privateRoomVoiceId: string;
 }

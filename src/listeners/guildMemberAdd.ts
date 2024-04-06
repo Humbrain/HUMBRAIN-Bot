@@ -16,7 +16,7 @@ export const GuildMemberAdd: Event = {
         const channel = member.guild.channels.cache.get(config.welcomeChannelId)
         if (!channel) return;
         const embed = new EmbedBuilder()
-            .setTitle('Welcome')
+            .setTitle('Bienvenue ' + member.user.username + ' sur ' + member.guild.name + ' !')
             .setDescription(config.welcomeMessage)
             .setColor("#bcddf6")
             .setThumbnail(member.user.displayAvatarURL({format: "png"}))
