@@ -11,6 +11,7 @@ import {Event} from "./event";
 import CooldownMiddleware from "../middlewares/cooldownCmdMiddleware";
 import CustomClient from "../utils/CustomClient";
 import Loggers from "../utils/Loggers";
+import {Error, Warning} from "../utils/Embed";
 
 
 export const InteractionCreate: Event = {
@@ -35,12 +36,14 @@ export const InteractionCreate: Event = {
 const handleSlashCommand = async (client: CustomClient, interaction: CommandInteraction): Promise<void> => {
     if (!await CooldownMiddleware.run(client, interaction)) {
         //@ts-ignore
-        await interaction.reply({content: 'You are on cooldown', ephemeral: true});
+        const embed = Warning("Vous devez attendre avant de pouvoir réutiliser cette commande");
+        await interaction.reply({embeds: [embed], ephemeral: true});
         return;
     }
     const slashCommand = client.commands.find(c => c.data.name === interaction.commandName);
     if (!slashCommand) {
-        await interaction.followUp({content: 'An error has occurred'});
+        const embed = Error("Une erreur est survenue");
+        await interaction.reply({embeds: [embed], ephemeral: true});
         return;
     }
     slashCommand.run(client, interaction);
@@ -49,7 +52,8 @@ const handleSlashCommand = async (client: CustomClient, interaction: CommandInte
 const handleButton = async (client: CustomClient, interaction: ButtonInteraction): Promise<void> => {
     const button = client.buttons.get(interaction.customId);
     if (!button) {
-        interaction.reply({content: 'An error has occurred', ephemeral: true});
+        const embed = Error("Une erreur est survenue");
+        await interaction.reply({embeds: [embed], ephemeral: true});
         return;
     }
     button.run(client, interaction);
@@ -58,7 +62,8 @@ const handleButton = async (client: CustomClient, interaction: ButtonInteraction
 const handleModals = async (client: CustomClient, interaction: ModalSubmitInteraction): Promise<void> => {
     const button = client.modals.get(interaction.customId);
     if (!button) {
-        interaction.reply({content: 'An error has occurred', ephemeral: true});
+        const embed = Error("Une erreur est survenue");
+        await interaction.reply({embeds: [embed], ephemeral: true});
         return;
     }
     button.run(client, interaction);
@@ -67,7 +72,8 @@ const handleModals = async (client: CustomClient, interaction: ModalSubmitIntera
 const handleContextMenu = async (client: CustomClient, interaction: ContextMenuCommandInteraction): Promise<void> => {
     const button = client.contextMenu.get(interaction.commandName);
     if (!button) {
-        interaction.reply({content: 'An error has occurred', ephemeral: true});
+        const embed = Error("Une erreur est survenue");
+        await interaction.reply({embeds: [embed], ephemeral: true});
         return;
     }
     button.run(client, interaction);

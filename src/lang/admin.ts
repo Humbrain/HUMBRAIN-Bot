@@ -222,6 +222,101 @@ const admin = {
         "ru": "Роль закрытого mp",
         "pt-BR": "O papel do mp fechado",
         "nl": "De rol van de gesloten mp"
+    },
+    "ticket_settings": {
+        "en-US": "ticketsettings",
+        "de": "ticketeinstellungen",
+        "ru": "настройки_билетов",
+        "pt-BR": "configuraçõesdeticket",
+        "nl": "ticketinstellingen",
+        "fr": "paramètresdeticket"
+    },
+    "ticket_settings_description": {
+        "en-US": "Set the ticket message",
+        "de": "Setze die Ticketnachricht",
+        "ru": "Установить сообщение билета",
+        "pt-BR": "Defina a mensagem do ticket",
+        "nl": "Stel het ticketbericht in",
+        "fr": "Définir le message du ticket"
+    },
+    "ticket_channel": {
+        "en-US": "ticketchannel",
+        "de": "ticketkanal",
+        "ru": "канал_билета",
+        "pt-BR": "canaldeticket",
+        "nl": "ticketkanaal",
+        "fr": "canaldeticket"
+    },
+    "ticket_channel_description": {
+        "en-US": "The channel to send the ticket message",
+        "de": "Der Kanal, in dem die Ticketnachricht gesendet wird",
+        "ru": "Канал для отправки сообщения билета",
+        "pt-BR": "O canal para enviar a mensagem do ticket",
+        "nl": "Het kanaal om het ticketbericht te verzenden",
+        "fr": "Le canal pour envoyer le message du ticket"
+    },
+    "ticket_message": {
+        "en-US": "ticketmessage",
+        "de": "ticketnachricht",
+        "ru": "сообщение_билета",
+        "pt-BR": "mensagemdoticket",
+        "nl": "ticketbericht",
+        "fr": "messageduticket"
+    },
+    "ticket_message_description": {
+        "en-US": "The ticket message to send",
+        "de": "Die Ticketnachricht zum Senden",
+        "ru": "Сообщение билета для отправки",
+        "pt-BR": "A mensagem do ticket a enviar",
+        "nl": "Het ticketbericht om te verzenden",
+        "fr": "Le message du ticket à envoyer"
+    },
+    "ticket_category": {
+        "en-US": "ticketcategory",
+        "de": "ticketkategorie",
+        "ru": "категория_билета",
+        "pt-BR": "categoriadeticket",
+        "nl": "ticketcategorie",
+        "fr": "catégoriedeticket"
+    },
+    "ticket_category_description": {
+        "en-US": "The category to create the ticket",
+        "de": "Die Kategorie, um das Ticket zu erstellen",
+        "ru": "Категория для создания билета",
+        "pt-BR": "A categoria para criar o ticket",
+        "nl": "De categorie om het ticket te maken",
+        "fr": "La catégorie pour créer le ticket"
+    },
+    "ticket_role": {
+        "en-US": "ticketrole",
+        "de": "ticketrolle",
+        "ru": "роль_билета",
+        "pt-BR": "roledoticket",
+        "nl": "ticketrol",
+        "fr": "rôleduticket"
+    },
+    "ticket_role_description": {
+        "fr": "Le rôle pour traiter les tickets",
+        "en-US": "The role to handle the tickets",
+        "de": "Die Rolle, um die Tickets zu bearbeiten",
+        "ru": "Роль для обработки билетов",
+        "pt-BR": "O papel para lidar com os tickets",
+        "nl": "De rol om de tickets te behandelen"
+    },
+    "ticket_transcript": {
+        "en-US": "tickettranscript",
+        "de": "tickettranskript",
+        "ru": "транскрипт_билета",
+        "pt-BR": "transcriçãodeticket",
+        "nl": "tickettranscript"
+    },
+    "ticket_transcript_description": {
+        "fr": "Le canal pour envoyer les retranscription du ticket",
+        "en-US": "The channel to send the ticket transcript",
+        "de": "Der Kanal, in dem das Tickettranskript gesendet wird",
+        "ru": "Канал для отправки транскрипта билета",
+        "pt-BR": "O canal para enviar a transcrição do ticket",
+        "nl": "Het kanaal om het tickettranscript te verzenden"
     }
 }
 export default admin;

@@ -31,4 +31,19 @@ export class Config {
 
     @Column({nullable: true})
     closeRoleId: string;
+
+    @Column({nullable: true})
+    ticketCategoryId: string;
+
+    @Column({nullable: true})
+    ticketMessage: string;
+
+    @Column({nullable: true})
+    ticketChannelId: string;
+
+    @Column({nullable: true})
+    ticketRoleId: string;
+
+    @Column({nullable: true})
+    ticketTranscriptChannelId: string;
 }
