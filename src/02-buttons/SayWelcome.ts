@@ -13,10 +13,13 @@ export const SayWelcome: Button = {
         const msg = interaction.message;
         const content = msg.content;
         const embed = msg.embeds[0];
+
         if (embed.description.includes(interaction.user.id)) {
             const error = Error('Vous avez déjà dit bienvenue !');
             await interaction.reply({content: 'Vous avez déjà dit bienvenue !', ephemeral: true});
+            return;
         }
+
         if (!embed) return;
         const nembed = new EmbedBuilder()
             .setTitle(embed.title)
