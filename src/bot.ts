@@ -8,11 +8,28 @@ import registerCommands from "./utils/RegisterCommands";
 import handlerButton from "./handlers/buttonsHandler";
 import handlerModals from "./handlers/modalsHandler";
 import handlerContextMenu from "./handlers/contextMenusHandler";
+import * as process from "process";
 
 AppDataSource.initialize().then(async () => {
 }).catch(error => Loggers.error(error));
 
 Loggers.info("Bot is starting...");
+process.on('unhandledRejection', (reason, promise) => {
+    Loggers.error(`Unhandled Rejection at: ${promise} reason: ${reason}`);
+});
+
+process.on('uncaughtException', (error) => {
+    Loggers.error(`Uncaught Exception: ${error}`);
+});
+
+process.on('uncaughtExceptionMonitor', (error, origin) => {
+    Loggers.error(`Uncaught Exception Monitor: ${error} origin: ${origin}`);
+});
+
+process.on('warning', (warning) => {
+    Loggers.warn(`Warning: ${warning}`);
+});
+
 
 const client = new CustomClient({
     intents: [
