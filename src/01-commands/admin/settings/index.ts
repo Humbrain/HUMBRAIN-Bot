@@ -18,6 +18,8 @@ import {WelcomSettings} from "./WelcomSettings";
 import {TicketSettings} from "./TicketSettings";
 import {PartnershipSettings} from "./PartnershipSettings";
 import {PrivateRoomSettings} from "./PrivateRoomSettings";
+import {Levels} from "../../../entities/Levels";
+import {Level} from "./Level";
 
 export const Settings: Command = {
     data: new SlashCommandBuilder()
@@ -32,6 +34,7 @@ export const Settings: Command = {
         .addSubcommand(TicketSettings.data)
         .addSubcommand(PartnershipSettings.data)
         .addSubcommand(PrivateRoomSettings.data)
+        .addSubcommandGroup(Level.data)
     ,
     run: async (client, interaction) => {
         //@ts-ignore
@@ -54,6 +57,9 @@ export const Settings: Command = {
                 return;
             case PrivateRoomSettings.data.name:
                 await PrivateRoomSettings.run(client, interaction);
+                return;
+            case Level.data.name:
+                await Level.run(client, interaction);
                 return;
             default:
                 const embed = Error("Commande inconnue");

@@ -115,7 +115,8 @@ export default class Leveling {
             await this._LevelRepo.save(newLevel);
             return false;
         }
-        return levelInfo.isActivated;
+        
+        return levelInfo.isActivated && !await this.isBlacklisted(this._message.channelId);
     }
 
     private async checkRankUp() {
@@ -147,5 +148,12 @@ export default class Leveling {
                 name: `rankup-${member.id}.png`
             }]
         });
+    }
+
+    private async isBlacklisted(channelId) {
+        const levelInfo = await this._LevelRepo.findOneBy({guildId: this._guildId});
+        if (levelInfo.blacklistedChannels == null) return false;
+        return levelInfo.blacklistedChannels.includes(channelId);
+
     }
 }

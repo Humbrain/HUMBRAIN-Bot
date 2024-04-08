@@ -9,7 +9,7 @@ export class Levels {
     @Column()
     isActivated: boolean;
 
-    @Column({type: "simple-array"})
+    @Column({type: "simple-array", nullable: true})
     blacklistedChannels: string[] = [];
 
     @Column()
