@@ -12,10 +12,10 @@ export const MessageCreate: Event = {
         if (!message.guild) return;
         if (!await CooldownLevelingMiddleware.run(client, message)) return;
         const leveling = new Leveling(message);
-        if(!await leveling.checkIfIsActivated()) return;
+        if (!await leveling.checkIfIsActivated()) return;
         await leveling.addXp();
 
-        if (message.includes(client.user.id)) {
+        if (message.content.includes(client.user.id)) {
             const messageRigolo = ["Tu m'as appelé ? ah oui je m'en fou", "Tu as besoin de moi ? demande plutôt au staff", "Tu as besoin d'aide pas mon problème"]
             message.reply(messageRigolo[Math.floor(Math.random() * messageRigolo.length)])
         }
