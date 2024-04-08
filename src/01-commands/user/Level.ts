@@ -25,9 +25,8 @@ export const Level: Command = {
     run: async (client, interaction) => {
         const guildRepo = AppDataSource.getRepository(Guild);
         const LevelRepo = AppDataSource.getRepository(LevelsUsers);
-        // @ts-ignore
-        let user = interaction.options.getMember(lang.user['en-US']);
-        const member: GuildMember = user || interaction.member;
+        let user = interaction.options.get(lang.user['en-US']).member as GuildMember;
+        const member: GuildMember = user || interaction.member as GuildMember;
         const guild = await guildRepo.findOneBy({id: interaction.guildId});
         if (!guild) {
             const error = Error("La guild n'as pas été trouvé");
