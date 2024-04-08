@@ -39,6 +39,7 @@ export const Settings: Command = {
     run: async (client, interaction) => {
         //@ts-ignore
         const subcommand = interaction.options.getSubcommand();
+        console.log(subcommand);
         switch (subcommand) {
             case PresentationSetting.data.name:
                 await PresentationSetting.run(client, interaction);
@@ -58,9 +59,8 @@ export const Settings: Command = {
             case PrivateRoomSettings.data.name:
                 await PrivateRoomSettings.run(client, interaction);
                 return;
-            case Level.data.name:
+            case 'addblacklist':
                 await Level.run(client, interaction);
-                return;
             default:
                 const embed = Error("Commande inconnue");
                 await interaction.reply({embeds: [embed], ephemeral: true});

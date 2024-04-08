@@ -28,7 +28,6 @@ export const Level: SubGroupCommand = {
 }
 
 const addBlacklist = async (client, interaction) => {
-
     const levelRepo = AppDataSource.getRepository(Levels);
     const channel = interaction.options.get('channel').channel as TextChannel;
     const level = await levelRepo.findOneBy({guildId: interaction.guildId});
