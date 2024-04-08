@@ -1,10 +1,8 @@
-import {ActionRowBuilder, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle} from "discord.js";
+import {ActionRowBuilder, EmbedBuilder, TextInputStyle} from "discord.js";
 import {Modal} from "./Modal";
 import CustomModal from "./CustomModal";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
-import {Presentations} from "../entities/Presentations";
-import Loggers from "../utils/Loggers";
 import {Error, Success} from "../utils/Embed";
 import {YesPartenariatBtn} from "../02-buttons/YesPartenariatBtn";
 import {NoPartenariatBtn} from "../02-buttons/NoPartenariatBtn";
@@ -14,7 +12,7 @@ import {Partenaria} from "../entities/partenaria";
 export const PartenariatModal: Modal = {
     data: new CustomModal()
         .setCustomId('partenariaModal')
-        .setTitle('Demande de partenaria')
+        .setTitle('Demande de partenariat')
         .addComponent("form_partenariat_link", "Invitation", TextInputStyle.Short, null, "https://discord.gg/xxxx")
         .addComponent("form_partenariat_description", "Description", TextInputStyle.Paragraph)
         .addComponent("form_partenariat_img", "Image", TextInputStyle.Short, null, "https://example.com/image.png", false)

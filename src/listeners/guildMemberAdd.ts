@@ -20,13 +20,13 @@ export const GuildMemberAdd: Event = {
             .setDescription(config.welcomeMessage)
             .setColor("#bcddf6")
             .setThumbnail(member.user.displayAvatarURL({format: "png"}))
-
+        const text = `||<@${member.id}>||`
         const welcomeBtn = client.buttons.get('welcomeBtn')
         const presentationBtn = client.buttons.get('presentation')
         const row = new ActionRowBuilder()
         if (welcomeBtn) row.addComponents(welcomeBtn.data)
         if (presentationBtn && config.presentationChannelId != null) row.addComponents(presentationBtn.data)
-        channel.send({embeds: [embed.data], components: [row]})
+        channel.send({content: text, embeds: [embed.data], components: [row]})
 
     }
 }

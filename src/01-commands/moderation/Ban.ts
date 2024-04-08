@@ -1,9 +1,10 @@
 import {Command} from "../command";
-import {PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
+import {EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import {Guild} from "../../entities/guild";
 import lang from "../../lang/lang";
+import {Error} from "../../utils/Embed";
 
 export const Ban: Command = {
     data: new SlashCommandBuilder()
@@ -31,7 +32,8 @@ export const Ban: Command = {
         const reason = interaction.options.getString(lang.reason['en-US']);
 
         if (!user) {
-            await interaction.reply({content: 'An error has occurred', ephemeral: true});
+            const error = Error("Une erreur c'est produite");
+            await interaction.reply({embeds: [error], ephemeral: true});
             return;
         }
 
@@ -45,6 +47,7 @@ export const Ban: Command = {
         logsRepo.save(logs);
 
         await user.ban({reason: reason});
+        const embed = new EmbedBuilder();
         await interaction.reply({content: `Banned ${user.tag} for ${reason}`});
     }
 }

@@ -9,7 +9,7 @@ import {Ban} from "./moderation/Ban";
 import {UnBan} from "./moderation/UnBan";
 import {Level} from "./user/Level";
 import {Rank} from "./user/Rank";
-import {Settings} from "./admin/Settings";
+import {Settings} from "./admin/settings";
 import {Voice} from "./user/Voice";
 import {Mp} from "./user/Mp";
 

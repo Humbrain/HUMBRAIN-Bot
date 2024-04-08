@@ -1,5 +1,6 @@
 import {Button} from "./Button";
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
+import {Error, Success} from "../utils/Embed";
 
 export const NoMpBtn: Button = {
     data: new ButtonBuilder()
@@ -11,7 +12,8 @@ export const NoMpBtn: Button = {
         const message = interaction.message
         const user = message.mentions.users.first();
         if (user.id !== interaction.user.id) {
-            return interaction.reply({content: 'Vous ne pouvez pas répondre à cette question', ephemeral: true})
+            const error = Error("Vous ne pouvez pas répondre à cette question")
+            return interaction.reply({embeds: [error], ephemeral: true})
         }
         const embed = message.embeds[0];
         const update = new EmbedBuilder().setColor(Colors.Red)
@@ -20,6 +22,7 @@ export const NoMpBtn: Button = {
         update.setDescription(embed.description + `\n<@${user.id}> a répondu non`)
         // @ts-ignore
         await message.edit({content: `||${uPing}||`, embeds: [update], components: []})
-        await interaction.reply({content: "Merci d'avoir répondu", ephemeral: true})
+        const success = Success("Votre réponse à bien été pris en compte");
+        await interaction.reply({embeds: [success], ephemeral: true})
     }
 }

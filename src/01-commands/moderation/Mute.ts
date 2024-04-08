@@ -1,11 +1,12 @@
 import {Command} from "../command";
-import {GuildMember, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
+import {EmbedBuilder, GuildMember, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import {Guild} from "../../entities/guild";
 import lang from "../../lang/lang";
 import * as ms from "ms";
 import * as console from "console";
+import {Error} from "../../utils/Embed";
 
 export const Mute: Command = {
     data: new SlashCommandBuilder()
@@ -38,7 +39,8 @@ export const Mute: Command = {
         // @ts-ignore
         const duration = interaction.options.getString(lang.duration['en-US']);
         if (!member) {
-            await interaction.reply({content: 'An error has occurred', ephemeral: true});
+            const error = Error("Une erreur c'est produite");
+            await interaction.reply({embeds: [error], ephemeral: true});
             return;
         }
         const logsRepo = AppDataSource.getRepository(Logs);
@@ -51,6 +53,7 @@ export const Mute: Command = {
         await logsRepo.save(logs);
         const _ms = ms(duration);
         await member.timeout(_ms, reason);
+        const embed = new EmbedBuilder();
         await interaction.reply({content: `Muted ${member.user.tag} for ${reason}`});
     }
 }

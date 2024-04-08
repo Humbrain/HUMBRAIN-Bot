@@ -3,6 +3,7 @@ import {Colors, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder} from "di
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import lang from "../../lang/lang";
+import {Error} from "../../utils/Embed";
 
 export const Sanctions: Command = {
     data: new SlashCommandBuilder()
@@ -22,7 +23,8 @@ export const Sanctions: Command = {
         // @ts-ignore
         const user = interaction.options.getUser(lang.user['en-US']);
         if (!user) {
-            await interaction.reply({content: 'An error has occurred', ephemeral: true});
+            const error = Error("Une erreur c'est produite");
+            await interaction.reply({embeds: [error], ephemeral: true});
             return;
         }
         const logsRepo = AppDataSource.getRepository(Logs);

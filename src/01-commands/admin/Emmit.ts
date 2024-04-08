@@ -9,8 +9,7 @@ export const Emmit: Command = {
                 {name: 'Membre', value: 'member'},
                 {name: 'Guild', value: 'guild'})),
         run: async (client: Client, interaction) => {
-            // @ts-ignore
-            const event: string = interaction.options.getString('event');
+            const event: string = interaction.options.get('event').value as string;
 
             switch (event) {
                 case 'member':
