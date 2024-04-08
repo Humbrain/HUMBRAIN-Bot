@@ -53,7 +53,7 @@ export const Level: Command = {
             .setUsername(member.user.globalName || member.user.username)
             .setBorder("#fff")
             .setBarColor("#fbc5dc")
-            .setStatus(member.presence?.status)
+            .setStatus('online')
             .setLevel(userLevel.level)
             .setRank(await Leveling.CalculateRank(member.id, guild.id))
             .setCurrentXp(userLevel.xp)
