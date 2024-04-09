@@ -29,7 +29,6 @@ export default class Leveling {
     }
 
     public async setLevelUser(): Promise<void> {
-        if (!await this.checkIfIsActivated()) return;
         this._LevelUser = await this._LevelUserRepo.findOneBy({userId: this._userId, guildId: this._guildId});
         if (this._LevelUser == null) {
             this._LevelUser = new LevelsUsers();
@@ -43,7 +42,6 @@ export default class Leveling {
     }
 
     async addXp() {
-        if (!await this.checkIfIsActivated()) return;
         await this.setLevelUser();
         this._LevelUser.xp += Math.floor(Math.random() * 10) + 15;
         await this._LevelUserRepo.save(this._LevelUser);
@@ -70,7 +68,6 @@ export default class Leveling {
     }
 
     private async chekLevel() {
-        if (!await this.checkIfIsActivated()) return;
         let levelNeed = Leveling.getLevelNeed(this._LevelUser);
         if (this._LevelUser.xp >= levelNeed) {
             this._LevelUser.level++;
@@ -82,7 +79,6 @@ export default class Leveling {
     }
 
     private async sendLevelUp() {
-        if (!await this.checkIfIsActivated()) return;
         const levelInfo = await this._LevelRepo.findOneBy({guildId: this._guildId});
         let channel = this._message.guild.channels.cache.get(this._message.channelId);
         if (levelInfo.channelId != null) channel = this._message.guild.channels.cache.get(levelInfo.channelId);
@@ -120,16 +116,16 @@ export default class Leveling {
     }
 
     private async checkRankUp() {
-        if (!await this.checkIfIsActivated()) return;
-        const levelInfo = await this._LevelRepo.findOneBy({guildId: this._userId});
-        const levelRanks = await this._LevelRankRepo.find({where: {guildId: this._guildId}});
+        const levelInfo = await this._LevelRepo.findOneBy({guildId: this._guildId});
+        let levelRanks = await this._LevelRankRepo.find({where: {guildId: this._guildId}});
         const levelUser = await this._LevelUserRepo.findOneBy({userId: this._userId, guildId: this._guildId});
-        const levelRank = levelRanks.find(rank => rank.level <= levelUser.level);
+        levelRanks = levelRanks.filter(rank => rank.level <= levelUser.level);
+        const maxRank = levelRanks.reduce((prev, current) => (prev.level > current.level) ? prev : current);
         let channel = this._message.guild.channels.cache.get(this._message.channelId);
         if (levelInfo?.channelId != null) channel = this._message.guild.channels.cache.get(levelInfo.channelId);
-        if (levelRank == null) return;
+        if (maxRank == null) return;
         const member = this._message.guild.members.cache.get(this._userId);
-        const role = this._message.guild.roles.cache.get(levelRank.roleId);
+        const role = this._message.guild.roles.cache.get(maxRank.roleId);
         if (member.roles.cache.has(role.id)) return;
         await member.roles.add(role);
         const welcome = await new canvafy.WelcomeLeave()

@@ -1,25 +1,23 @@
 import {
-    ActionRowBuilder,
     PermissionFlagsBits,
     SlashCommandBuilder,
-    ChannelType, EmbedBuilder, Colors
 } from "discord.js";
 import lang from "../../../lang/lang";
-import {AppDataSource} from "../../../data-source";
-import {Config} from "../../../entities/config";
 import {Command} from "../../command";
 import {Error, Success} from "../../../utils/Embed";
-import {PresentationBtn} from "../../../02-buttons/presentationBtn";
-import {TicketsBtn} from "../../../02-buttons/Tickets";
-import {PartenariaBtn} from "../../../02-buttons/PartenariaBtn";
 import {PresentationSetting} from "./Presentation";
 import {PrivateMessageSettings} from "./PrivateMessageSettings";
 import {WelcomSettings} from "./WelcomSettings";
 import {TicketSettings} from "./TicketSettings";
 import {PartnershipSettings} from "./PartnershipSettings";
 import {PrivateRoomSettings} from "./PrivateRoomSettings";
-import {Levels} from "../../../entities/Levels";
-import {Level} from "./Level";
+import {LevelAddBlackList} from "./LevelAddBlackList";
+import {LevelRemoveBlackList} from "./LevelRemoveBlackList";
+import {LevelAddRang} from "./LevelAddRang";
+import {LevelEditRang} from "./LevelEditRang";
+import {LevelRemoveRang} from "./LevelRemoveRang";
+import {LevelChannel} from "./LevelChannel";
+import {LevelIsActivate} from "./LevelIsActivate";
 
 export const Settings: Command = {
     data: new SlashCommandBuilder()
@@ -34,12 +32,23 @@ export const Settings: Command = {
         .addSubcommand(TicketSettings.data)
         .addSubcommand(PartnershipSettings.data)
         .addSubcommand(PrivateRoomSettings.data)
-        .addSubcommandGroup(Level.data)
+        .addSubcommandGroup(subcommandGroup => subcommandGroup
+            .setName(lang.level["en-US"])
+            .setNameLocalizations(lang.level)
+            .setDescription(lang.level["en-US"])
+            .setDescriptionLocalizations(lang.level)
+            .addSubcommand(LevelAddBlackList.data)
+            .addSubcommand(LevelRemoveBlackList.data)
+            .addSubcommand(LevelAddRang.data)
+            .addSubcommand(LevelEditRang.data)
+            .addSubcommand(LevelRemoveRang.data)
+            .addSubcommand(LevelChannel.data)
+            .addSubcommand(LevelIsActivate.data)
+        )
     ,
     run: async (client, interaction) => {
         //@ts-ignore
         const subcommand = interaction.options.getSubcommand();
-        console.log(subcommand);
         switch (subcommand) {
             case PresentationSetting.data.name:
                 await PresentationSetting.run(client, interaction);
@@ -59,8 +68,27 @@ export const Settings: Command = {
             case PrivateRoomSettings.data.name:
                 await PrivateRoomSettings.run(client, interaction);
                 return;
-            case 'addblacklist':
-                await Level.run(client, interaction);
+            case LevelAddBlackList.data.name:
+                await LevelAddBlackList.run(client, interaction);
+                return;
+            case LevelRemoveBlackList.data.name:
+                await LevelRemoveBlackList.run(client, interaction);
+                return;
+            case LevelAddRang.data.name:
+                await LevelAddRang.run(client, interaction);
+                return;
+            case LevelEditRang.data.name:
+                await LevelEditRang.run(client, interaction);
+                return;
+            case LevelRemoveRang.data.name:
+                await LevelRemoveRang.run(client, interaction);
+                return;
+            case LevelChannel.data.name:
+                await LevelChannel.run(client, interaction);
+                return;
+            case LevelIsActivate.data.name:
+                await LevelIsActivate.run(client, interaction);
+                return;
             default:
                 const embed = Error("Commande inconnue");
                 await interaction.reply({embeds: [embed], ephemeral: true});
