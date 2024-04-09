@@ -1,4 +1,4 @@
-import {ActionRowBuilder, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle} from "discord.js";
+import {ActionRowBuilder, EmbedBuilder, ModalBuilder, TextChannel, TextInputBuilder, TextInputStyle} from "discord.js";
 import {Modal} from "./Modal";
 import CustomModal from "./CustomModal";
 import {AppDataSource} from "../data-source";
@@ -36,15 +36,16 @@ export const PresentationModal: Modal = {
             .setDescription(`${description}`)
             .addFields({name: 'Identité', value: `Nom: ${name}\nAge: ${age}`})
             .setColor("#bcddf6")
-        const channel = await client.channels.fetch(config.presentationChannelId);
+        const channel = await client.channels.fetch(config.presentationChannelId) as TextChannel;
         const presentationBtn = client.buttons.get("presentation");
         const row = new ActionRowBuilder().addComponents(presentationBtn.data);
         // @ts-ignore
         const msg = await channel.send({embeds: [embed], components: [row]});
         if (presentation) {
-            // @ts-ignore
             const oldMsg = await channel.messages.fetch(presentation.presentationMsgId);
-            await oldMsg.delete();
+            if (oldMsg) {
+                await oldMsg.delete();
+            }
             presentation.name = name;
             presentation.age = age;
             presentation.description = description;
