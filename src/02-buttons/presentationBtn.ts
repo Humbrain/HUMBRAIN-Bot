@@ -9,7 +9,7 @@ import CustomModal from "../03-modals/CustomModal";
 export const PresentationBtn: Button = {
     data: new ButtonBuilder()
         .setCustomId('presentation')
-        .setLabel('Faire ça presentation')
+        .setLabel('Faire sa présentation')
         .setStyle(ButtonStyle.Secondary),
     run: async (client, interaction) => {
         const presentationRepo = AppDataSource.getRepository(Presentations);
