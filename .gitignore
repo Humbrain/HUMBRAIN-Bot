@@ -6,4 +6,5 @@ tmp/
 temp/
 .env
 ecosystem.config.js
-
+package-lock.json
+dist/
