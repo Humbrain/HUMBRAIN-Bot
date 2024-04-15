@@ -10,7 +10,6 @@ export const MessageUpdate: Event = {
     once: false,
     event: Events.MessageUpdate,
     run: async (client, oldmessage, newMessage) => {
-        console.log(oldmessage, newMessage)
         if (newMessage.author.bot) return;
         if (!newMessage.guild) return;
         const configRepo = AppDataSource.getRepository(Config);
