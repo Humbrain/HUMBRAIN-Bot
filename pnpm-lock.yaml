@@ -36,7 +36,7 @@ dependencies:
     specifier: ^8.4.0
     version: 8.11.3
   reflect-metadata:
-    specifier: ^0.1.13
+    specifier: ^0.1.14
     version: 0.1.14
   tslib:
     specifier: ^2.6.2
@@ -50,7 +50,7 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^16.11.10
+    specifier: ^16.18.88
     version: 16.18.88
   nodemon:
     specifier: ^3.1.0
