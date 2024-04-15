@@ -4,9 +4,8 @@ import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import {Guild} from "../../entities/guild";
 import lang from "../../lang/lang";
-import * as ms from "ms";
-import * as console from "console";
 import {Error} from "../../utils/Embed";
+import {toMs} from "ms-typescript";
 
 export const Mute: Command = {
     data: new SlashCommandBuilder()
@@ -51,7 +50,7 @@ export const Mute: Command = {
         logs.reason = reason + ` (Duration: ${duration})`;
         logs.sanction = Sanction.MUTE;
         await logsRepo.save(logs);
-        const _ms = ms(duration);
+        const _ms = toMs(duration);
         await member.timeout(_ms, reason);
         const embed = new EmbedBuilder();
         await interaction.reply({content: `Muted ${member.user.tag} for ${reason}`});
