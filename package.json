@@ -5,8 +5,9 @@
    "main": "src/bot.ts",
    "scripts": {
       "dev": "nodemon --exec ts-node src/bot.ts",
-      "start": "ts-node src/bot.ts",
-      "build": "tsup src/bot.ts --minify",
+      "start": "ts-node src/index.ts",
+      "build": "tsup src/bot.ts",
+      "start:prod": "node dist/bot.js",
       "typeorm": "typeorm-ts-node-commonjs"
    },
    "author": {
@@ -15,7 +16,7 @@
    },
    "license": "Apache-2.0",
    "devDependencies": {
-      "@types/node": "^16.18.88",
+      "@types/node": "^16.11.10",
       "nodemon": "^3.1.0",
       "ts-node": "10.9.1",
       "tsup": "^8.0.2",
@@ -24,6 +25,7 @@
    },
    "dependencies": {
       "@napi-rs/canvas": "^0.1.51",
+      "@swc/core": "^1.4.14",
       "canvafy": "^7.1.0",
       "colors": "^1.4.0",
       "discord-html-transcripts": "^3.2.0",
@@ -33,7 +35,7 @@
       "ms-typescript": "^2.0.0",
       "mysql2": "^3.9.2",
       "pg": "^8.4.0",
-      "reflect-metadata": "^0.1.14",
+      "reflect-metadata": "^0.1.13",
       "tslib": "^2.6.2",
       "typeorm": "0.3.20",
       "undici": "^6.11.1"

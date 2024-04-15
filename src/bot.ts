@@ -9,7 +9,6 @@ import registerCommands from "./utils/RegisterCommands";
 import handlerButton from "./handlers/buttonsHandler";
 import handlerModals from "./handlers/modalsHandler";
 import handlerContextMenu from "./handlers/contextMenusHandler";
-import * as process from "process";
 
 AppDataSource.initialize().then(async () => {
 }).catch(error => Loggers.error(error));
