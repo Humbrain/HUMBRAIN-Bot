@@ -11,6 +11,7 @@ export const VoiceStateUpdate: Event = {
     run: async (client, oldState, newState) => {
         const configRepo = AppDataSource.getRepository(Config);
         const config = await configRepo.findOneBy({guildId: newState.guild.id});
+        if (!config) return;
         if (!oldState.channel && newState.channel) {
             // User joined a voice channel
             await createChannel(config, newState);
@@ -26,7 +27,7 @@ export const VoiceStateUpdate: Event = {
 }
 
 const createChannel = async (config, newState) => {
-    if (config.privateRoomCategoryId == null) return;
+    if (config?.privateRoomCategoryId == null) return;
     if (newState.channel.id === config.privateRoomVoiceId) {
         // User joined the creator voice channel
         const newVoiceChannel = await newState.guild.channels.create({
@@ -47,7 +48,7 @@ const createChannel = async (config, newState) => {
 }
 
 const deleteChannel = async (config, oldState) => {
-    if (config.privateRoomCategoryId == null) return;
+    if (config?.privateRoomCategoryId == null) return;
     // User left the creator voice channel
     const privateRoomRepo = AppDataSource.getRepository(PrivateRoom);
     const privateRoom = await privateRoomRepo.findOneBy({channelId: oldState.channel.id});
