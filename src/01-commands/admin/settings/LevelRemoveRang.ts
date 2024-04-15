@@ -1,9 +1,8 @@
-import {SubCommand} from "../../subCommand";
-import {ChannelType, Role, SlashCommandSubcommandBuilder, TextChannel} from "discord.js";
-import {Levels} from "../../../entities/Levels";
+import {Role, SlashCommandSubcommandBuilder} from "discord.js";
 import {AppDataSource} from "../../../data-source";
 import {Error, Success} from "../../../utils/Embed";
 import {LevelsRanks} from "../../../entities/LevelsRanks";
+import {SubCommand} from "../../subCommand";
 
 export const LevelRemoveRang: SubCommand = {
     data: new SlashCommandSubcommandBuilder()

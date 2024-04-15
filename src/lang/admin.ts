@@ -483,6 +483,42 @@ const admin = {
                     "fr": "La catégorie pour créer le canal privé"
                 }
             },
+        },
+        "message": {
+            "name": {
+                "en-US": "message",
+                "de": "nachricht",
+                "ru": "сообщение",
+                "pt-BR": "mensagem",
+                "nl": "bericht",
+                "fr": "message"
+            },
+            "description": {
+                "en-US": "Define the message system",
+                "de": "Legen Sie das Nachrichtensystem fest",
+                "ru": "Определите систему сообщений",
+                "pt-BR": "Defina o sistema de mensagens",
+                "nl": "Bepaal het berichtensysteem",
+                "fr": "Définir le système de message"
+            },
+            "channel": {
+                "name": {
+                    "en-US": "channel",
+                    "de": "kanal",
+                    "ru": "канал",
+                    "pt-BR": "canal",
+                    "nl": "kanaal",
+                    "fr": "canal"
+                },
+                "description": {
+                    "en-US": "The channel to send the message",
+                    "de": "Der Kanal, in dem die Nachricht gesendet wird",
+                    "ru": "Канал для отправки сообщения",
+                    "pt-BR": "O canal para enviar a mensagem",
+                    "nl": "Het kanaal om het bericht te verzenden",
+                    "fr": "Le canal pour envoyer le message"
+                }
+            }
         }
     }
 }

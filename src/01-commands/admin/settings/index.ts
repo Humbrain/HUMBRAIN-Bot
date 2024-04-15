@@ -18,6 +18,7 @@ import {LevelEditRang} from "./LevelEditRang";
 import {LevelRemoveRang} from "./LevelRemoveRang";
 import {LevelChannel} from "./LevelChannel";
 import {LevelIsActivate} from "./LevelIsActivate";
+import {MessageSettings} from "./MessageSettings";
 
 export const Settings: Command = {
     data: new SlashCommandBuilder()
@@ -32,6 +33,7 @@ export const Settings: Command = {
         .addSubcommand(TicketSettings.data)
         .addSubcommand(PartnershipSettings.data)
         .addSubcommand(PrivateRoomSettings.data)
+        .addSubcommand(MessageSettings.data)
         .addSubcommandGroup(subcommandGroup => subcommandGroup
             .setName(lang.level["en-US"])
             .setNameLocalizations(lang.level)
@@ -88,6 +90,9 @@ export const Settings: Command = {
                 return;
             case LevelIsActivate.data.name:
                 await LevelIsActivate.run(client, interaction);
+                return;
+            case MessageSettings.data.name:
+                await MessageSettings.run(client, interaction);
                 return;
             default:
                 const embed = Error("Commande inconnue");

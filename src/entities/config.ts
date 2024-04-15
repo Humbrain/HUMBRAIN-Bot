@@ -64,4 +64,7 @@ export class Config {
 
     @Column({nullable: true})
     privateRoomVoiceId: string;
+
+    @Column({nullable: true})
+    messageLogChannelId: string;
 }

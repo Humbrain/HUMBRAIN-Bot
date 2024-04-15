@@ -5,6 +5,8 @@ import {GuildCreate} from "./guildCreate";
 import {GuildMemberAdd} from "./guildMemberAdd";
 import {MessageCreate} from "./messageCreate";
 import {VoiceStateUpdate} from "./voiceStateUpdate";
+import {MessageUpdate} from "./messageUpdate";
+import {MessageDelete} from "./messageDelete";
 
-export const Events: Event[] = [Ready, InteractionCreate, GuildCreate, GuildMemberAdd, MessageCreate, VoiceStateUpdate];
+export const Events: Event[] = [Ready, InteractionCreate, GuildCreate, GuildMemberAdd, MessageCreate, VoiceStateUpdate, MessageUpdate, MessageDelete];
 
