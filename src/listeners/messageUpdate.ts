@@ -12,6 +12,7 @@ export const MessageUpdate: Event = {
     run: async (client, oldmessage, newMessage) => {
         if (newMessage.author.bot) return;
         if (!newMessage.guild) return;
+        if (newMessage.content === oldmessage.content) return;
         const configRepo = AppDataSource.getRepository(Config);
         const config = await configRepo.findOne({where: {guildId: newMessage.guild.id}});
         if (!config) return;
