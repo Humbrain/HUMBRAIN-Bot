@@ -39,15 +39,21 @@ export const Ban: Command = {
 
         const logsRepo = AppDataSource.getRepository(Logs);
         const guildRepo = AppDataSource.getRepository(Guild);
-        const logs = new Logs();
-        logs.guild = await guildRepo.findOneBy({id: interaction.guildId});
-        logs.userId = user.id;
-        logs.reason = reason;
-        logs.sanction = Sanction.BAN;
-        logsRepo.save(logs);
 
-        await user.ban({reason: reason});
-        const embed = new EmbedBuilder();
-        await interaction.reply({content: `Banned ${user.tag} for ${reason}`});
+        try {
+            await user.ban({reason: reason});
+            const logs = new Logs();
+            logs.guild = await guildRepo.findOneBy({id: interaction.guildId});
+            logs.userId = user.id;
+            logs.reason = reason;
+            logs.sanction = Sanction.BAN;
+            logsRepo.save(logs);
+            const embed = Error(`L'utilisateur ${user} a été banni pour la raison suivante:\n \`${reason}\``);
+            await interaction.reply({embeds: [embed], ephemeral: true});
+        } catch (e) {
+            const error = Error("Une erreur c'est produite");
+            await interaction.reply({embeds: [error], ephemeral: true});
+            return;
+        }
     }
 }
