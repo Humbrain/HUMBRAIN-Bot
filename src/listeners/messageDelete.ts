@@ -25,7 +25,7 @@ export const MessageDelete: Event = {
                 iconURL: message.author.displayAvatarURL()
             })
             .setTitle("Message supprimé")
-            .setDescription(`L'utilisateur ${message.author} a supprimé le message ${message.content} dans le salon ${message.channel}`)
+            .setDescription(`Le message de ${message.author} a été supprimé \n Contené:\n${message.content}\n dans le salon ${message.channel}`)
             .setColor(Colors.Red)
             .setTimestamp()
 
