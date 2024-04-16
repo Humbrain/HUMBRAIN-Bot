@@ -12,5 +12,6 @@ import {Rank} from "./user/Rank";
 import {Settings} from "./admin/settings";
 import {Voice} from "./user/Voice";
 import {Mp} from "./user/Mp";
+import {Lol} from "./user/Lol";
 
-export const Commands: Command[] = [Emmit, Warn, Sanctions, Mute, UnMute, Clear, Ban, UnBan, Level, Rank, Settings, Voice, Mp];
+export const Commands: Command[] = [Emmit, Warn, Sanctions, Mute, UnMute, Clear, Ban, UnBan, Level, Rank, Settings, Voice, Mp, Lol];

@@ -23,6 +23,7 @@ process.on('uncaughtException', (error) => {
 });
 
 process.on('uncaughtExceptionMonitor', (error, origin) => {
+    console.debug(error)
     Loggers.error(`Uncaught Exception Monitor: ${error} origin: ${origin}`);
 });
 

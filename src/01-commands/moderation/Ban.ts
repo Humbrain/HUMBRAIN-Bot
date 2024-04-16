@@ -5,6 +5,7 @@ import {Logs, Sanction} from "../../entities/logs";
 import {Guild} from "../../entities/guild";
 import lang from "../../lang/lang";
 import {Error} from "../../utils/Embed";
+import Loggers from "../../utils/Loggers";
 
 export const Ban: Command = {
     data: new SlashCommandBuilder()
@@ -41,7 +42,8 @@ export const Ban: Command = {
         const guildRepo = AppDataSource.getRepository(Guild);
 
         try {
-            await user.ban({reason: reason});
+            await interaction.guild.bans.create(user, {reason: reason})
+            //await user.ban({reason: reason});
             const logs = new Logs();
             logs.guild = await guildRepo.findOneBy({id: interaction.guildId});
             logs.userId = user.id;
@@ -51,6 +53,7 @@ export const Ban: Command = {
             const embed = Error(`L'utilisateur ${user} a été banni pour la raison suivante:\n \`${reason}\``);
             await interaction.reply({embeds: [embed], ephemeral: true});
         } catch (e) {
+            Loggers.error(e);
             const error = Error("Une erreur c'est produite");
             await interaction.reply({embeds: [error], ephemeral: true});
             return;
