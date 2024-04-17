@@ -36,6 +36,8 @@ export const leagueRankCard = async (summoner: string, rank: string, wins: numbe
     context.fillStyle = '#785a28';
     if (tier === "I") {
         context.fillText(tier, 221, 100)
+    }else if (tier === "II") {
+        context.fillText(tier, 213, 100)
     } else if (tier === "V") {
         context.fillText(tier, 213, 100)
     } else {
@@ -85,7 +87,8 @@ export const leagueRankCard = async (summoner: string, rank: string, wins: numbe
     context.font = '40px lolfont';
     context.fillStyle = '#c89b3c';
     context.fillText('Points', 400, 650)
-    context.fillText(championMasteryPoint.toString(), 600, 650)
+    const masteryPointFormat = championMasteryPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    context.fillText(masteryPointFormat, 600, 650)
 
 
     const attachement = new AttachmentBuilder(await canvas.encode('png'), {name: `${summoner}.png`})
