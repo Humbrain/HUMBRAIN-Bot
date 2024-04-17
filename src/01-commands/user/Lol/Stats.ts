@@ -1,6 +1,8 @@
 import {SubCommand} from "../../subCommand";
 import {AttachmentBuilder, EmbedBuilder, SlashCommandSubcommandBuilder} from "discord.js";
 import axios from "axios";
+import {leagueRankCard} from "../../../utils/leagueRankCard";
+import {Error} from "../../../utils/Embed";
 
 export const Stats: SubCommand = {
     data: new SlashCommandSubcommandBuilder()
@@ -88,47 +90,88 @@ export const Stats: SubCommand = {
                 break;
 
         }
-        const apiUrlPuid = `https://${regionTag}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${summoner}/${tag}?api_key=${process.env.RIOT_API_KEY}`
-        let puid = "";
-        try {
-            const response = await axios.get(apiUrlPuid);
-            const data = await response.data;
-            puid = data.puuid;
-        } catch (error) {
-            await interaction.reply("The summoner was not found.");
-            console.debug(error)
+        const puuid = await getPuuid(summoner, tag, regionTag);
+        if (!puuid) {
+            let error = Error("Une erreur est survenue lors de la récupération des données du joueur. (Puuid)");
+            await interaction.reply({
+                embeds: [error]
+            });
+            return;
         }
-        const apiUrl = `https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puid}?api_key=${process.env.RIOT_API_KEY}`
-        let id = "";
-        let iconPath = "";
-        try {
-            const response = await axios.get(apiUrl);
-            const data = await response.data;
-            id = data.id;
-            iconPath = data.profileIconId;
-        } catch (error) {
-            await interaction.reply("The summoner was not found.");
-            console.debug(error)
+        const summonerData = await getSummoner(puuid, region);
+        if (!summonerData) {
+            let error = Error("Une erreur est survenue lors de la récupération des données du joueur. (Summoner)");
+            await interaction.reply({
+                embeds: [error]
+            });
+            return;
         }
-        const apiUrlStats = `https://${region}.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.RIOT_API_KEY}`
-        try {
-            const response = await axios.get(apiUrlStats);
-            const data = await response.data[0];
-            let img = new AttachmentBuilder(`./src/00-assets/lolranks/${data.tier.toLowerCase()}.png`)
-            const embed = new EmbedBuilder()
-                .setTitle(`Stats for ${summoner}#${tag}`)
-                .setAuthor({
-                    name: `${summoner}#${tag}`,
-                    iconURL: `https://ddragon.leagueoflegends.com/cdn/14.8.1/img/profileicon/${iconPath}.png`
-                })
-                .setDescription(`**Rank**: ${data.tier} ${data.rank} ${data.leaguePoints} LP\n**Wins**: ${data.wins}\n**Losses**: ${data.losses}\n**Winrate**: ${((data.wins / (data.wins + data.losses)) * 100).toFixed(2)}%`)
-                .setThumbnail(`attachment://${data.tier.toLowerCase()}.png`)
-                .setColor("#0099ff")
-                .setTimestamp()
-            await interaction.reply({embeds: [embed], files: [img]});
-        } catch (error) {
-            await interaction.reply("The summoner was not found.");
-            console.debug(error)
+        const championMastery = await getMaxMasteryChampion(puuid, region);
+        if (!championMastery) {
+            let error = Error("Une erreur est survenue lors de la récupération des données du joueur. (Champion Mastery)");
+            await interaction.reply({
+                embeds: [error]
+            });
+            return;
         }
+        const league = await getLeague(summonerData.id, region);
+        if (!league) {
+            let error = Error("Une erreur est survenue lors de la récupération des données du joueur. (League)");
+            await interaction.reply({
+                embeds: [error]
+            });
+            return;
+        }
+        const attachment = await leagueRankCard(`${summoner}#${tag}`, league.tier, league.wins, league.losses, league.leaguePoints, league.rank, summonerData.profileIconId, championMastery.championId, championMastery.championLevel, championMastery.championPoints);
+        await interaction.reply({
+            files: [attachment]
+        });
+    }
+}
+
+const getPuuid = async (summoner: string, tag: string, region: string) => {
+    // /riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}
+    try {
+    const {data} = await axios.get(`https://${region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${summoner}/${tag}?api_key=${process.env.RIOT_API_KEY}`);
+    return data.puuid;
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+
+const getSummoner = async (puuid: string, region: string) => {
+    // /riot/account/v1/accounts/{puuid}
+    try {
+        const {data} = await axios.get(`https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}?api_key=${process.env.RIOT_API_KEY}`);
+        return data;
+    }
+    catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+
+
+const getMaxMasteryChampion = async (puuid: string, region: string) => {
+    try {
+    // /lol/champion-mastery/v4/champion-masteries/by-puuid/{encryptedPUUID}
+    const {data} = await axios.get(`https://${region}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}?api_key=${process.env.RIOT_API_KEY}`);
+    data.sort((a, b) => b.championLevel - a.championLevel);
+    return data[0];
+    } catch (e) {
+        console.log(e);
+        return null;
+
+    }
+}
+
+const getLeague = async (id: string, region: string) => {
+    try {
+    const {data} = await axios.get(`https://${region}.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.RIOT_API_KEY}`);
+    return data[0];
+    } catch (e) {
+        console.log(e);
+        return null;
     }
 }

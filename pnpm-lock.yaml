@@ -51,7 +51,7 @@ dependencies:
     specifier: 0.3.20
     version: 0.3.20(mysql2@3.9.4)(pg@8.11.5)(ts-node@10.9.1)
   undici:
-    specifier: ^6.11.1
+    specifier: ^6.13.0
     version: 6.13.0
 
 devDependencies:

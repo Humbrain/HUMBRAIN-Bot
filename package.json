@@ -39,6 +39,6 @@
       "reflect-metadata": "^0.1.13",
       "tslib": "^2.6.2",
       "typeorm": "0.3.20",
-      "undici": "^6.11.1"
+      "undici": "^6.13.0"
    }
 }
