@@ -1,6 +1,6 @@
-import {Command} from "../../../components/command";
+import {Command} from "../../components/command";
 import {SlashCommandBuilder} from "discord.js";
-import {Stats} from "./Stats";
+import {Stats} from "./Lol/Stats";
 
 const Lol: Command = {
     data: new SlashCommandBuilder()

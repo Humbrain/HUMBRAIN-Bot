@@ -2,24 +2,24 @@ import {
     PermissionFlagsBits,
     SlashCommandBuilder,
 } from "discord.js";
-import lang from "../../../lang/lang";
-import {Command} from "../../../components/command";
-import {Error, Success} from "../../../utils/Embed";
-import {PresentationSetting} from "./Presentation";
-import {PrivateMessageSettings} from "./PrivateMessageSettings";
-import {WelcomSettings} from "./WelcomSettings";
-import {TicketSettings} from "./TicketSettings";
-import {PartnershipSettings} from "./PartnershipSettings";
-import {PrivateRoomSettings} from "./PrivateRoomSettings";
-import {LevelAddBlackList} from "./LevelAddBlackList";
-import {LevelRemoveBlackList} from "./LevelRemoveBlackList";
-import {LevelAddRang} from "./LevelAddRang";
-import {LevelEditRang} from "./LevelEditRang";
-import {LevelRemoveRang} from "./LevelRemoveRang";
-import {LevelChannel} from "./LevelChannel";
-import {LevelIsActivate} from "./LevelIsActivate";
-import {MessageSettings} from "./MessageSettings";
-import {Help} from "./Help";
+import lang from "../../lang/lang";
+import {Command} from "../../components/command";
+import {Error, Success} from "../../utils/Embed";
+import {PresentationSetting} from "./settings/Presentation";
+import {PrivateMessageSettings} from "./settings/PrivateMessageSettings";
+import {WelcomSettings} from "./settings/WelcomSettings";
+import {TicketSettings} from "./settings/TicketSettings";
+import {PartnershipSettings} from "./settings/PartnershipSettings";
+import {PrivateRoomSettings} from "./settings/PrivateRoomSettings";
+import {LevelAddBlackList} from "./settings/LevelAddBlackList";
+import {LevelRemoveBlackList} from "./settings/LevelRemoveBlackList";
+import {LevelAddRang} from "./settings/LevelAddRang";
+import {LevelEditRang} from "./settings/LevelEditRang";
+import {LevelRemoveRang} from "./settings/LevelRemoveRang";
+import {LevelChannel} from "./settings/LevelChannel";
+import {LevelIsActivate} from "./settings/LevelIsActivate";
+import {MessageSettings} from "./settings/MessageSettings";
+import {Help} from "./settings/Help";
 
 const Settings: Command = {
     data: new SlashCommandBuilder()
