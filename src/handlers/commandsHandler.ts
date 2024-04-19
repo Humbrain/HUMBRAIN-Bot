@@ -6,7 +6,7 @@ const handlerCommands = async (client: CustomClient) => {
     const commandsFolder = fs.readdirSync("./src/01-commands");
     const cmds = [];
     for (const folder of commandsFolder) {
-        const commands = fs.readdirSync(`./src/01-commands/${folder}`);
+        const commands = fs.readdirSync(`./src/01-commands/${folder}`).filter((file) => file.endsWith(".ts") || file.endsWith(".js");
         for (const command of commands) {
             try {
                 const {default: commandFile} = (await import(`../01-commands/${folder}/${command}`));
