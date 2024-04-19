@@ -1,9 +1,9 @@
-import {ContextMenu} from "./context-menu";
+import {ContextMenu} from "../components/context-menu";
 import {ContextMenuCommandBuilder, ApplicationCommandType, EmbedBuilder, Colors, ActionRowBuilder} from "discord.js";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
 
-export const MpContextMenu: ContextMenu = {
+const MpContextMenu: ContextMenu = {
     data: new ContextMenuCommandBuilder()
         .setType(ApplicationCommandType.User)
         .setName('mp'),
@@ -60,3 +60,5 @@ export const MpContextMenu: ContextMenu = {
 
     }
 }
+
+export default MpContextMenu;

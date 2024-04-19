@@ -1,13 +1,12 @@
-import {ActionRowBuilder, EmbedBuilder, ModalBuilder, TextChannel, TextInputBuilder, TextInputStyle} from "discord.js";
-import {Modal} from "./Modal";
-import CustomModal from "./CustomModal";
+import {ActionRowBuilder, EmbedBuilder, TextChannel, TextInputStyle} from "discord.js";
+import {Modal} from "../components/Modal";
+import CustomModal from "../components/CustomModal";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
 import {Presentations} from "../entities/Presentations";
-import Loggers from "../utils/Loggers";
 
 
-export const PresentationModal: Modal = {
+const PresentationModal: Modal = {
     data: new CustomModal()
         .setCustomId('presentationModal')
         .setTitle('Presentation')
@@ -64,3 +63,5 @@ export const PresentationModal: Modal = {
         await interaction.reply({content: 'Votre presentation a bien été envoyée', ephemeral: true});
     }
 }
+
+export default PresentationModal;

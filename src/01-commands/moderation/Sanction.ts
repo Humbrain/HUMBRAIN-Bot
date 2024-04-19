@@ -1,11 +1,12 @@
-import {Command} from "../command";
+import {Command} from "../../components/command";
 import {Colors, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import lang from "../../lang/lang";
 import {Error} from "../../utils/Embed";
+import exp = require("node:constants");
 
-export const Sanctions: Command = {
+const Sanctions: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.moderation.sanction['en-US'])
         .setNameLocalizations(lang.moderation.sanction)
@@ -43,3 +44,5 @@ export const Sanctions: Command = {
 
     }
 }
+
+export default Sanctions;

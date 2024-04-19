@@ -1,10 +1,9 @@
 import {ButtonBuilder, ButtonInteraction, ButtonStyle, EmbedBuilder} from "discord.js";
-import {Button} from "./Button";
-import Loggers from "../utils/Loggers";
+import {Button} from "../components/Button";
 import {Error} from "../utils/Embed";
 
 
-export const SayWelcome: Button = {
+const SayWelcome: Button = {
     data: new ButtonBuilder()
         .setCustomId('welcomeBtn')
         .setLabel('Dit bienvenue !')
@@ -33,3 +32,5 @@ export const SayWelcome: Button = {
         await interaction.update({content: content, embeds: [nembed]});
     }
 }
+
+export default SayWelcome;

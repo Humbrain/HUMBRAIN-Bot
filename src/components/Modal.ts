@@ -1,4 +1,4 @@
-import {ButtonInteraction, ModalSubmitInteraction} from "discord.js";
+import {ModalSubmitInteraction} from "discord.js";
 import CustomClient from "../utils/CustomClient";
 
 export interface Modal {

@@ -1,20 +1,18 @@
 import {
     CommandInteraction,
-    Client,
     Interaction,
     Events,
     ButtonInteraction,
     ModalSubmitInteraction,
     ContextMenuCommandInteraction
 } from 'discord.js';
-import {Event} from "./event";
+import {Events as e} from "../handlers/eventHandler";
 import CooldownMiddleware from "../middlewares/cooldownCmdMiddleware";
 import CustomClient from "../utils/CustomClient";
-import Loggers from "../utils/Loggers";
 import {Error, Warning} from "../utils/Embed";
 
 
-export const InteractionCreate: Event = {
+const InteractionCreate: e = {
     once: false,
     event: Events.InteractionCreate,
     run: async (client: CustomClient, interaction: Interaction) => {
@@ -78,3 +76,6 @@ const handleContextMenu = async (client: CustomClient, interaction: ContextMenuC
     }
     button.run(client, interaction);
 }
+
+
+export default InteractionCreate;

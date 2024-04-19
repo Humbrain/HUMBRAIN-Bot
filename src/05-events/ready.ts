@@ -1,8 +1,8 @@
-import {Event} from "./event";
+import {Events as e} from "../handlers/eventHandler";
 import {Events} from "discord.js";
 import Loggers from "../utils/Loggers";
 
-export const Ready: Event = {
+const Ready: e = {
     once: true,
     event: Events.ClientReady,
     run: async (client) => {
@@ -12,3 +12,5 @@ export const Ready: Event = {
         Loggers.sucess(`${client.user.username} is online`);
     }
 }
+
+export default Ready;

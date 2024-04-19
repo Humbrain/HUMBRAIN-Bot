@@ -1,11 +1,11 @@
-import {Command} from "../command";
+import {Command} from "../../components/command";
 import {CommandInteraction, GuildMember, SlashCommandBuilder} from "discord.js";
 import lang from "../../lang/lang";
 import {PrivateRoom} from "../../entities/privateRoom";
 import {AppDataSource} from "../../data-source";
 import {Error, Success} from "../../utils/Embed";
 
-export const Voice: Command = {
+const Voice: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.voice["en-US"])
         .setNameLocalizations(lang.voice)
@@ -116,3 +116,5 @@ export const Voice: Command = {
         }
     }
 }
+
+export default Voice;

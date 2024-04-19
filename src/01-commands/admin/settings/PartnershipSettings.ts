@@ -1,4 +1,4 @@
-import {SubCommand} from "../../subCommand";
+import {SubCommand} from "../../../components/subCommand";
 import lang from "../../../lang/lang";
 import {
     ActionRowBuilder,
@@ -10,7 +10,6 @@ import {
 } from "discord.js";
 import {AppDataSource} from "../../../data-source";
 import {Config} from "../../../entities/config";
-import {PartenariaBtn} from "../../../02-buttons/PartenariaBtn";
 import {Success} from "../../../utils/Embed";
 
 export const PartnershipSettings: SubCommand = {
@@ -70,7 +69,7 @@ export const PartnershipSettings: SubCommand = {
             });
         }
 
-        const btn = new ActionRowBuilder<ButtonBuilder>().addComponents(PartenariaBtn.data);
+        const btn = new ActionRowBuilder<ButtonBuilder>().addComponents(client.buttons.get('partenaria').data);
         const sendChannel = interaction.guild.channels.cache.get(partenariaChannel.id) as TextChannel;
         await sendChannel.send({components: [btn]});
 

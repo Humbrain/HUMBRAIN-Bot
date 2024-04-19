@@ -1,12 +1,9 @@
 import {Colors, EmbedBuilder, Events, TextChannel} from "discord.js";
-import {Event} from "./event";
-import Loggers from "../utils/Loggers";
-import CooldownLevelingMiddleware from "../middlewares/cooldownLevlingMiddleware";
-import Leveling from "../utils/Leveling";
+import {Events as e} from "../handlers/eventHandler";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
 
-export const MessageDelete: Event = {
+const MessageDelete: e = {
     once: false,
     event: Events.MessageDelete,
     run: async (client, message) => {
@@ -32,3 +29,5 @@ export const MessageDelete: Event = {
         await channel.send({embeds: [embed]});
     }
 }
+
+export default MessageDelete;

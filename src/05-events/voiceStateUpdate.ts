@@ -1,11 +1,10 @@
 import {ChannelType, Events} from "discord.js";
-import {Event} from "./event";
+import {Events as e} from "../handlers/eventHandler";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
 import {PrivateRoom} from "../entities/privateRoom";
-import Loggers from "../utils/Loggers";
 
-export const VoiceStateUpdate: Event = {
+const VoiceStateUpdate: e = {
     once: false,
     event: Events.VoiceStateUpdate,
     run: async (client, oldState, newState) => {
@@ -60,3 +59,6 @@ const deleteChannel = async (config, oldState) => {
         }
     }
 }
+
+
+export default VoiceStateUpdate;

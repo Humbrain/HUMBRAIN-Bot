@@ -1,11 +1,11 @@
-import {Command} from "../command";
+import {Command} from "../../components/command";
 import {PermissionFlagsBits, SlashCommandBuilder, User} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import {Guild} from "../../entities/guild";
 import lang from "../../lang/lang";
 
-export const UnBan: Command = {
+const UnBan: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.moderation.unban['en-US'])
         .setNameLocalizations(lang.moderation.unban)
@@ -40,3 +40,6 @@ export const UnBan: Command = {
         await interaction.reply({content: `Unbanned ${user.tag}`});
     }
 }
+
+
+export default UnBan;

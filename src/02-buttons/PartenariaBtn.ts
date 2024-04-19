@@ -1,9 +1,8 @@
-import {Button} from "./Button";
+import {Button} from "../components/Button";
 import {ButtonBuilder, ButtonStyle} from "discord.js";
-import {modals} from "../03-modals";
 import {Error} from "../utils/Embed";
 
-export const PartenariaBtn: Button = {
+const PartenariaBtn: Button = {
     data: new ButtonBuilder()
         .setCustomId("partenaria")
         .setLabel("Demande de partenariat")
@@ -18,3 +17,5 @@ export const PartenariaBtn: Button = {
         return interaction.showModal(modal.data.build())
     }
 }
+
+export default PartenariaBtn;

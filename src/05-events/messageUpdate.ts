@@ -1,12 +1,12 @@
 import {Colors, EmbedBuilder, Events, TextChannel} from "discord.js";
-import {Event} from "./event";
+import {Events as e} from "../handlers/eventHandler";
 import Loggers from "../utils/Loggers";
 import CooldownLevelingMiddleware from "../middlewares/cooldownLevlingMiddleware";
 import Leveling from "../utils/Leveling";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
 
-export const MessageUpdate: Event = {
+const MessageUpdate: e = {
     once: false,
     event: Events.MessageUpdate,
     run: async (client, oldmessage, newMessage) => {
@@ -32,3 +32,5 @@ export const MessageUpdate: Event = {
         await channel.send({embeds: [embed]});
     }
 }
+
+export default MessageUpdate;

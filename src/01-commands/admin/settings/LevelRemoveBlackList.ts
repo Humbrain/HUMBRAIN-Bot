@@ -1,8 +1,7 @@
-import {SubCommand} from "../../subCommand";
-import {ChannelType, SlashCommandSubcommandBuilder, SlashCommandSubcommandGroupBuilder, TextChannel} from "discord.js";
+import {SubCommand} from "../../../components/subCommand";
+import {ChannelType, SlashCommandSubcommandBuilder, TextChannel} from "discord.js";
 import {Levels} from "../../../entities/Levels";
 import {AppDataSource} from "../../../data-source";
-import {SubGroupCommand} from "../../subGroupCommand";
 import {Error, Success} from "../../../utils/Embed";
 
 export const LevelRemoveBlackList: SubCommand = {

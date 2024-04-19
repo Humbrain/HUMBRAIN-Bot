@@ -3,7 +3,7 @@ import {
     SlashCommandBuilder,
 } from "discord.js";
 import lang from "../../../lang/lang";
-import {Command} from "../../command";
+import {Command} from "../../../components/command";
 import {Error, Success} from "../../../utils/Embed";
 import {PresentationSetting} from "./Presentation";
 import {PrivateMessageSettings} from "./PrivateMessageSettings";
@@ -19,8 +19,9 @@ import {LevelRemoveRang} from "./LevelRemoveRang";
 import {LevelChannel} from "./LevelChannel";
 import {LevelIsActivate} from "./LevelIsActivate";
 import {MessageSettings} from "./MessageSettings";
+import {Help} from "./Help";
 
-export const Settings: Command = {
+const Settings: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.admin.settings.name["en-US"])
         .setNameLocalizations(lang.admin.settings.name)
@@ -34,6 +35,7 @@ export const Settings: Command = {
         .addSubcommand(PartnershipSettings.data)
         .addSubcommand(PrivateRoomSettings.data)
         .addSubcommand(MessageSettings.data)
+        .addSubcommand(Help.data)
         .addSubcommandGroup(subcommandGroup => subcommandGroup
             .setName(lang.level["en-US"])
             .setNameLocalizations(lang.level)
@@ -94,9 +96,14 @@ export const Settings: Command = {
             case MessageSettings.data.name:
                 await MessageSettings.run(client, interaction);
                 return;
+            case Help.data.name:
+                await Help.run(client, interaction);
+                return;
             default:
                 const embed = Error("Commande inconnue");
                 await interaction.reply({embeds: [embed], ephemeral: true});
         }
     }
 }
+
+export default Settings;

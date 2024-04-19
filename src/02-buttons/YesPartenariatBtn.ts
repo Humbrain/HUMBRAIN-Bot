@@ -1,13 +1,12 @@
-import {Button} from "./Button";
+import {Button} from "../components/Button";
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
 import {AppDataSource} from "../data-source";
 import {Partenaria} from "../entities/partenaria";
 import {Error, Success} from "../utils/Embed";
 import {Config} from "../entities/config";
-import {PartenariaBtn} from "./PartenariaBtn";
 import Loggers from "../utils/Loggers";
 
-export const YesPartenariatBtn: Button = {
+const YesPartenariatBtn: Button = {
     data: new ButtonBuilder()
         .setCustomId('yespartenariat')
         .setLabel('Accepter')
@@ -42,7 +41,7 @@ export const YesPartenariatBtn: Button = {
             .setLabel("Rejoindre le discord")
             .setURL(partenaria.invite)
             .setStyle(ButtonStyle.Link);
-        const row = new ActionRowBuilder().addComponents(btn, PartenariaBtn.data);
+        const row = new ActionRowBuilder().addComponents(btn, client.buttons.get('partenaria').data);
         const channel = await client.channels.fetch(config.partenaireChannelId);
         // @ts-ignore
         await channel.send({content: content, embeds: [embed], components: [row]});
@@ -69,3 +68,5 @@ export const YesPartenariatBtn: Button = {
         }
     }
 }
+
+export default YesPartenariatBtn;

@@ -1,8 +1,8 @@
 import {GuildChannel, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import lang from "../../lang/lang";
-import {Command} from "../command";
+import {Command} from "../../components/command";
 
-export const Clear: Command = {
+const Clear: Command = {
     cooldown: 30,
     data: new SlashCommandBuilder()
         .setName(lang.moderation.clear['en-US'])
@@ -41,3 +41,5 @@ export const Clear: Command = {
         }
     }
 }
+
+export default Clear;

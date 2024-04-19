@@ -1,5 +1,5 @@
-import {SubCommand} from "../../subCommand";
-import {AttachmentBuilder, EmbedBuilder, SlashCommandSubcommandBuilder} from "discord.js";
+import {SubCommand} from "../../../components/subCommand";
+import {SlashCommandSubcommandBuilder} from "discord.js";
 import axios from "axios";
 import {leagueRankCard} from "../../../utils/leagueRankCard";
 import {Error} from "../../../utils/Embed";

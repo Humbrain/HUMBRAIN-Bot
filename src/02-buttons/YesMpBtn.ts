@@ -1,7 +1,7 @@
-import {Button} from "./Button";
-import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
+import {Button} from "../components/Button";
+import {ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
 
-export const YesMpBtn: Button = {
+const YesMpBtn: Button = {
     data: new ButtonBuilder()
         .setCustomId('yesmp')
         .setLabel('Oui')
@@ -23,3 +23,5 @@ export const YesMpBtn: Button = {
         await interaction.reply({content: "Merci d'avoir répondu", ephemeral: true})
     }
 }
+
+export default YesMpBtn;

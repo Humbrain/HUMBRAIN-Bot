@@ -67,4 +67,7 @@ export class Config {
 
     @Column({nullable: true})
     messageLogChannelId: string;
+
+    @Column({nullable: true})
+    helpChannelId: string;
 }

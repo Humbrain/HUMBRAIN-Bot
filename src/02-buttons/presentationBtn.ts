@@ -1,12 +1,11 @@
-import {ButtonBuilder, ButtonStyle, ModalBuilder, TextInputStyle} from "discord.js";
-import {Button} from "./Button";
-import Loggers from "../utils/Loggers";
+import {ButtonBuilder, ButtonStyle, TextInputStyle} from "discord.js";
+import {Button} from "../components/Button";
 import {AppDataSource} from "../data-source";
 import {Presentations} from "../entities/Presentations";
-import CustomModal from "../03-modals/CustomModal";
+import CustomModal from "../components/CustomModal";
 
 
-export const PresentationBtn: Button = {
+const PresentationBtn: Button = {
     data: new ButtonBuilder()
         .setCustomId('presentation')
         .setLabel('Faire sa présentation')
@@ -35,3 +34,5 @@ export const PresentationBtn: Button = {
         await interaction.showModal(modal.build());
     }
 }
+
+export default PresentationBtn;

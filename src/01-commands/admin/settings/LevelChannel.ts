@@ -1,8 +1,8 @@
-import {SubCommand} from "../../subCommand";
+import {SubCommand} from "../../../components/subCommand";
 import {ChannelType, SlashCommandSubcommandBuilder, TextChannel} from "discord.js";
 import {Levels} from "../../../entities/Levels";
 import {AppDataSource} from "../../../data-source";
-import {Error, Success} from "../../../utils/Embed";
+import {Success} from "../../../utils/Embed";
 
 export const LevelChannel: SubCommand = {
     data: new SlashCommandSubcommandBuilder()

@@ -1,6 +1,6 @@
-import {SubCommand} from "../../subCommand";
+import {SubCommand} from "../../../components/subCommand";
 import lang from "../../../lang/lang";
-import {ChannelType, GuildChannel, Role, SlashCommandSubcommandBuilder, TextChannel} from "discord.js";
+import {ChannelType, Role, SlashCommandSubcommandBuilder, TextChannel} from "discord.js";
 import {Error, Success} from "../../../utils/Embed";
 import {AppDataSource} from "../../../data-source";
 import {Config} from "../../../entities/config";

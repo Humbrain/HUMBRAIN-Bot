@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import {AppDataSource} from './data-source';
 import {GatewayIntentBits, Partials} from "discord.js";
-import {handleEvents} from "./listeners/event";
+import {handleEvents} from "./handlers/eventHandler";
 import Loggers from "./utils/Loggers";
 import CustomClient from "./utils/CustomClient";
 import handlerCommands from "./handlers/commandsHandler";
@@ -62,11 +62,13 @@ const client = new CustomClient({
     ],
 });
 
-handlerCommands(client)
-handlerButton(client)
-handlerModals(client)
-handlerContextMenu(client)
-registerCommands(client)
-handleEvents(client);
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN).then(async () => {
+    await handlerCommands(client);
+    await handlerButton(client);
+    await handlerModals(client);
+    await handlerContextMenu(client);
+    await handleEvents(client);
+    await registerCommands(client);
+
+});

@@ -1,4 +1,4 @@
-import {Command} from "../command";
+import {Command} from "../../components/command";
 import {PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
@@ -7,7 +7,7 @@ import lang from "../../lang/lang";
 import {Error} from "../../utils/Embed";
 import Loggers from "../../utils/Loggers";
 
-export const Warn: Command = {
+const Warn: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.moderation.warn["en-US"])
         .setNameLocalizations(lang.moderation.warn)
@@ -51,3 +51,5 @@ export const Warn: Command = {
         }
     }
 }
+
+export default Warn;

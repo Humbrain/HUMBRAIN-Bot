@@ -1,4 +1,4 @@
-import {Command} from "../command";
+import {Command} from "../../components/command";
 import {EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
@@ -7,7 +7,7 @@ import lang from "../../lang/lang";
 import {Error} from "../../utils/Embed";
 import Loggers from "../../utils/Loggers";
 
-export const Ban: Command = {
+const Ban: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.moderation.ban['en-US'])
         .setNameLocalizations(lang.moderation.ban)
@@ -60,3 +60,5 @@ export const Ban: Command = {
         }
     }
 }
+
+export default Ban;

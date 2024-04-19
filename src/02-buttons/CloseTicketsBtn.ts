@@ -1,22 +1,13 @@
-import {Button} from "./Button";
-import {
-    ButtonBuilder,
-    ButtonStyle,
-    Channel,
-    ChannelType,
-    GuildMember,
-    PermissionFlagsBits,
-    Role,
-    User
-} from "discord.js";
+import {Button} from "../components/Button";
+import {ButtonBuilder, ButtonStyle, GuildMember} from "discord.js";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
-import {Error, Success} from "../utils/Embed";
+import {Error} from "../utils/Embed";
 import {Tickets} from "../entities/Tickets";
 import {createTranscript} from 'discord-html-transcripts'
 import {ExportReturnType} from "discord-html-transcripts/dist/types";
 
-export const CloseTicketsBtn: Button = {
+const CloseTicketsBtn: Button = {
     data: new ButtonBuilder()
         .setCustomId("closetickets")
         .setLabel("Fermer les tickets")
@@ -63,3 +54,5 @@ export const CloseTicketsBtn: Button = {
         await interactionChannel.delete()
     }
 }
+
+export default CloseTicketsBtn

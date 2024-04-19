@@ -1,6 +1,5 @@
-import {SubCommand} from "../../subCommand";
-import {ChannelType, Role, SlashCommandSubcommandBuilder, TextChannel} from "discord.js";
-import {Levels} from "../../../entities/Levels";
+import {SubCommand} from "../../../components/subCommand";
+import {ChannelType, Role, SlashCommandSubcommandBuilder} from "discord.js";
 import {AppDataSource} from "../../../data-source";
 import {Error, Success} from "../../../utils/Embed";
 import {LevelsRanks} from "../../../entities/LevelsRanks";

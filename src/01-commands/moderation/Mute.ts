@@ -1,4 +1,4 @@
-import {Command} from "../command";
+import {Command} from "../../components/command";
 import {EmbedBuilder, GuildMember, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
@@ -7,7 +7,7 @@ import lang from "../../lang/lang";
 import {Error} from "../../utils/Embed";
 import {toMs} from "ms-typescript";
 
-export const Mute: Command = {
+const Mute: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.moderation.mute["en-US"])
         .setNameLocalizations(lang.moderation.mute)
@@ -56,3 +56,5 @@ export const Mute: Command = {
         await interaction.reply({content: `Muted ${member.user.tag} for ${reason}`});
     }
 }
+
+export default Mute;

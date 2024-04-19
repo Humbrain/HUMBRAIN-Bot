@@ -1,12 +1,11 @@
-import {Button} from "./Button";
+import {Button} from "../components/Button";
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, EmbedBuilder, PermissionFlagsBits} from "discord.js";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
 import {Error, Success} from "../utils/Embed";
 import {Tickets} from "../entities/Tickets";
-import {CloseTicketsBtn} from "./CloseTicketsBtn";
 
-export const TicketsBtn: Button = {
+const TicketsBtn: Button = {
     data: new ButtonBuilder()
         .setCustomId("tickets")
         .setLabel("Tickets")
@@ -69,7 +68,7 @@ export const TicketsBtn: Button = {
                 "\nVeuillez attendre patiemment une réponse de l'équipe du personnel, en attendant, décrivez votre " +
                 "problème avec le plus de détails possible.")
             .setFooter({text: "Les boutons ci-dessous sont des boutons réservés au staff."});
-        const closeBtn = new ActionRowBuilder().addComponents(CloseTicketsBtn.data)
+        const closeBtn = new ActionRowBuilder().addComponents(client.buttons.get("closetickets").data)
 
         // @ts-ignore
         await ticketChannel.send({embeds: [Embed], components: [closeBtn]})
@@ -83,3 +82,5 @@ export const TicketsBtn: Button = {
         }, 5000);
     }
 }
+
+export default TicketsBtn;

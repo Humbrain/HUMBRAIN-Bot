@@ -1,10 +1,10 @@
 import {Client, Events} from 'discord.js';
-import {Event} from "./event";
+import {Events as e} from "../handlers/eventHandler";
 import {AppDataSource} from "../data-source";
 import {Guild} from "../entities/guild";
 
 
-export const GuildCreate: Event = {
+const GuildCreate: e = {
     once: false,
     event: Events.GuildCreate,
     run: async (client: Client, guild: any) => {
@@ -19,3 +19,5 @@ export const GuildCreate: Event = {
         await guildRepo.save(newGuild);
     }
 }
+
+export default GuildCreate;

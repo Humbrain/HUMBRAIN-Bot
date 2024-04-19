@@ -1,12 +1,10 @@
-import {Command} from "../command";
+import {Command} from "../../components/command";
 import {ActionRowBuilder, Colors, CommandInteraction, EmbedBuilder, GuildMember, SlashCommandBuilder} from "discord.js";
 import lang from "../../lang/lang";
-import {PrivateRoom} from "../../entities/privateRoom";
 import {AppDataSource} from "../../data-source";
-import {Error, Success} from "../../utils/Embed";
 import {Config} from "../../entities/config";
 
-export const Mp: Command = {
+const Mp: Command = {
     data: new SlashCommandBuilder()
         .setName("mp")
         .setDescription("Demande de mp à un utilisateur")
@@ -70,3 +68,5 @@ export const Mp: Command = {
         await interaction.reply({content: 'La demande de MP a été envoyée.', ephemeral: true});
     }
 }
+
+export default Mp;

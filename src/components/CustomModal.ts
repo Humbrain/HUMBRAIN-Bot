@@ -1,5 +1,4 @@
-import {ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle} from "discord.js";
-import Loggers from "../utils/Loggers";
+import {ActionRowBuilder, ModalBuilder, TextInputBuilder} from "discord.js";
 
 export default class CustomModal {
 

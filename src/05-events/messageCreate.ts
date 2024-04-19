@@ -1,10 +1,9 @@
 import {Events} from "discord.js";
-import {Event} from "./event";
-import Loggers from "../utils/Loggers";
+import {Events as e} from "../handlers/eventHandler";
 import CooldownLevelingMiddleware from "../middlewares/cooldownLevlingMiddleware";
 import Leveling from "../utils/Leveling";
 
-export const MessageCreate: Event = {
+const MessageCreate: e = {
     once: false,
     event: Events.MessageCreate,
     run: async (client, message) => {
@@ -64,3 +63,5 @@ export const MessageCreate: Event = {
         await leveling.addXp();
     }
 }
+
+export default MessageCreate;

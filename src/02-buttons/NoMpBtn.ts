@@ -1,8 +1,8 @@
-import {Button} from "./Button";
-import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
+import {Button} from "../components/Button";
+import {ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
 import {Error, Success} from "../utils/Embed";
 
-export const NoMpBtn: Button = {
+const NoMpBtn: Button = {
     data: new ButtonBuilder()
         .setCustomId('nomp')
         .setLabel('Non')
@@ -26,3 +26,5 @@ export const NoMpBtn: Button = {
         await interaction.reply({embeds: [success], ephemeral: true})
     }
 }
+
+export default NoMpBtn

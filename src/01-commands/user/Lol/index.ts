@@ -1,8 +1,8 @@
-import {Command} from "../../command";
+import {Command} from "../../../components/command";
 import {SlashCommandBuilder} from "discord.js";
 import {Stats} from "./Stats";
 
-export const Lol: Command = {
+const Lol: Command = {
     data: new SlashCommandBuilder()
         .setName("leagueoflegends")
         .setDescription("Get information about a League of Legends.")
@@ -21,3 +21,5 @@ export const Lol: Command = {
     }
 
 }
+
+export default Lol;

@@ -7,10 +7,9 @@ import {
     SlashCommandSubcommandBuilder,
     TextChannel
 } from "discord.js";
-import {SubCommand} from "../../subCommand";
+import {SubCommand} from "../../../components/subCommand";
 import {AppDataSource} from "../../../data-source";
 import {Config} from "../../../entities/config";
-import {TicketsBtn} from "../../../02-buttons/Tickets";
 import {Success} from "../../../utils/Embed";
 
 export const TicketSettings: SubCommand = {
@@ -77,7 +76,7 @@ export const TicketSettings: SubCommand = {
                 ticketTranscriptChannelId: ticketTranscript.id
             });
         }
-        const ticketBtn = new ActionRowBuilder<ButtonBuilder>().addComponents(TicketsBtn.data);
+        const ticketBtn = new ActionRowBuilder<ButtonBuilder>().addComponents(client.buttons.get('tickets').data);
         const embedTick = new EmbedBuilder()
             .setTitle("Ticket")
             .setDescription(ticketMessage + "\nCliquez sur le bouton pour créer un ticket")

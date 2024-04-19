@@ -1,13 +1,12 @@
-import {Button} from "./Button";
-import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
+import {Button} from "../components/Button";
+import {ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
 import {AppDataSource} from "../data-source";
 import {Partenaria} from "../entities/partenaria";
 import {Config} from "../entities/config";
 import {Error, Success} from "../utils/Embed";
-import {PartenariaBtn} from "./PartenariaBtn";
 import Loggers from "../utils/Loggers";
 
-export const NoPartenariatBtn: Button = {
+const NoPartenariatBtn: Button = {
     data: new ButtonBuilder()
         .setCustomId('nopartenariat')
         .setLabel('Refuser')
@@ -50,3 +49,5 @@ export const NoPartenariatBtn: Button = {
         }
     }
 }
+
+export default NoPartenariatBtn;

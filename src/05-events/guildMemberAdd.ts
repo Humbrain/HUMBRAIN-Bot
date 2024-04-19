@@ -1,11 +1,11 @@
 import {Events, EmbedBuilder, ActionRowBuilder} from 'discord.js';
-import {Event} from "./event";
+import {Events as e} from "../handlers/eventHandler";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
 import CustomClient from "../utils/CustomClient";
 
 
-export const GuildMemberAdd: Event = {
+const GuildMemberAdd: e = {
     once: false,
     event: Events.GuildMemberAdd,
     run: async (client: CustomClient, member: any) => {
@@ -30,3 +30,5 @@ export const GuildMemberAdd: Event = {
 
     }
 }
+
+export default GuildMemberAdd;

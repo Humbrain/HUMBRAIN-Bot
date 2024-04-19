@@ -1,15 +1,13 @@
 import {ActionRowBuilder, EmbedBuilder, TextInputStyle} from "discord.js";
-import {Modal} from "./Modal";
-import CustomModal from "./CustomModal";
+import {Modal} from "../components/Modal";
+import CustomModal from "../components/CustomModal";
 import {AppDataSource} from "../data-source";
 import {Config} from "../entities/config";
 import {Error, Success} from "../utils/Embed";
-import {YesPartenariatBtn} from "../02-buttons/YesPartenariatBtn";
-import {NoPartenariatBtn} from "../02-buttons/NoPartenariatBtn";
 import {Partenaria} from "../entities/partenaria";
 
 
-export const PartenariatModal: Modal = {
+const PartenariatModal: Modal = {
     data: new CustomModal()
         .setCustomId('partenariaModal')
         .setTitle('Demande de partenariat')
@@ -60,7 +58,7 @@ export const PartenariatModal: Modal = {
         if (img) {
             embed.setImage(img);
         }
-        const row = new ActionRowBuilder().addComponents(YesPartenariatBtn.data, NoPartenariatBtn.data);
+        const row = new ActionRowBuilder().addComponents(client.buttons.get('yespartenariat').data, client.buttons.get('nopartenariat').data);
         // @ts-ignore
         const message = await client.channels.cache.get(config.partenariaChannelAskId).send({
             contents: `||<@${config.partenaireRoleId}>||`,
@@ -71,3 +69,5 @@ export const PartenariatModal: Modal = {
         await interaction.reply({embeds: [success], ephemeral: true});
     }
 }
+
+export default PartenariatModal;

@@ -1,4 +1,4 @@
-import {SubCommand} from "../../subCommand";
+import {SubCommand} from "../../../components/subCommand";
 
 import {SlashCommandSubcommandBuilder, TextChannel} from "discord.js";
 import lang from "../../../lang/lang";

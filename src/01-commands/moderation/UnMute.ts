@@ -1,11 +1,11 @@
-import {Command} from "../command";
+import {Command} from "../../components/command";
 import {GuildMember, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Logs, Sanction} from "../../entities/logs";
 import {Guild} from "../../entities/guild";
 import lang from "../../lang/lang";
 
-export const UnMute: Command = {
+const UnMute: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.moderation.unmute["en-US"])
         .setNameLocalizations(lang.moderation.unmute)
@@ -37,3 +37,5 @@ export const UnMute: Command = {
         await interaction.reply({content: `Unmuted ${user.user.tag}`});
     }
 }
+
+export default UnMute;

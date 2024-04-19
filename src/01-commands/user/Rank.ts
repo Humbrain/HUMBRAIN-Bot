@@ -1,14 +1,12 @@
-import {Command} from "../command";
-import {GuildMember, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
+import {Command} from "../../components/command";
+import {SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Guild} from "../../entities/guild";
 import lang from "../../lang/lang";
 import {LevelsUsers} from "../../entities/LevelsUsers";
 import * as canvafy from "canvafy";
-import Leveling from "../../utils/Leveling";
-import * as console from "console";
 
-export const Rank: Command = {
+const Rank: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.rank['en-US'])
         .setNameLocalizations(lang.rank)
@@ -56,5 +54,7 @@ export const Rank: Command = {
         });
     }
 }
+
+export default Rank;
 
 

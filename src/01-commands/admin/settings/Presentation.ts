@@ -6,11 +6,10 @@ import {
     SlashCommandSubcommandBuilder,
     TextChannel
 } from "discord.js";
-import {SubCommand} from "../../subCommand";
+import {SubCommand} from "../../../components/subCommand";
 import lang from "../../../lang/lang";
 import {AppDataSource} from "../../../data-source";
 import {Config} from "../../../entities/config";
-import {PresentationBtn} from "../../../02-buttons/presentationBtn";
 import {Success} from "../../../utils/Embed";
 
 export const PresentationSetting: SubCommand = {
@@ -38,7 +37,7 @@ export const PresentationSetting: SubCommand = {
         } else {
             await configRepo.update(config.id, {presentationChannelId: presentationChannel.id});
         }
-        const row = new ActionRowBuilder<ButtonBuilder>().addComponents(PresentationBtn.data);
+        const row = new ActionRowBuilder<ButtonBuilder>().addComponents(client.buttons.get('presentation').data);
         const channel = interaction.guild.channels.cache.get(presentationChannel.id) as TextChannel;
         await channel.send({components: [row]});
         const embed = Success("Les paramètres de présentation ont été mis à jour");

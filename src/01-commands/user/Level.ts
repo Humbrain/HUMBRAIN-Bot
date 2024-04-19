@@ -1,15 +1,14 @@
-import {Command} from "../command";
-import {GuildMember, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
+import {Command} from "../../components/command";
+import {GuildMember, SlashCommandBuilder} from "discord.js";
 import {AppDataSource} from "../../data-source";
 import {Guild} from "../../entities/guild";
 import lang from "../../lang/lang";
 import {LevelsUsers} from "../../entities/LevelsUsers";
 import * as canvafy from "canvafy";
 import Leveling from "../../utils/Leveling";
-import * as console from "console";
 import {Error} from "../../utils/Embed";
 
-export const Level: Command = {
+const Level: Command = {
     data: new SlashCommandBuilder()
         .setName(lang.level['en-US'])
         .setNameLocalizations(lang.level)
@@ -69,4 +68,5 @@ export const Level: Command = {
     }
 }
 
+export default Level;
 
